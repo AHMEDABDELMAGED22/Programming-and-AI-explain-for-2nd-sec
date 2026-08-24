@@ -68,6 +68,15 @@ export const youtubeVideos: YouTubeVideo[] = [
     durationMinutes: 6
   },
   {
+    id: 'yt-vr',
+    videoId: 'd_k8S779Z-M',
+    title: 'MIT Explains: How Does Virtual Reality Work?',
+    channel: 'MIT',
+    url: 'https://www.youtube.com/watch?v=d_k8S779Z-M',
+    relatedConcept: 'vr',
+    durationMinutes: 2
+  },
+  {
     id: 'yt-ar-vr',
     videoId: 'WxzcD04rwc8',
     title: 'AR vs VR — What is the Difference?',
