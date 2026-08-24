@@ -45,8 +45,8 @@ const arContent: Record<string, { definition: string; explanation: string; examp
 };
 
 export default function EmergingTech() {
-  const [selectedTech, setSelectedTech] = useState<string | null>(null);
-  const [showDetail, setShowDetail] = useState(false);
+  const [selectedTech, setSelectedTech] = useState<string | null>('vr');
+  const [showDetail, setShowDetail] = useState(true);
   const { openVideo } = useLessonStore();
   const { t, dir, isAr } = useTranslation();
 
@@ -194,29 +194,31 @@ export default function EmergingTech() {
                           </div>
                         )}
 
-                        {/* Video card */}
-                        <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
-                          <div className={`flex items-center gap-3 ${isAr ? 'flex-row-reverse text-right' : 'text-left'}`}>
-                            <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-lg flex-shrink-0">
+                        {/* Embedded Video Player Card */}
+                        <div className="bg-gradient-to-br from-red-50/80 via-white to-purple-50/80 border-2 border-red-200 rounded-2xl p-5 shadow-sm">
+                          <div className={`flex items-center gap-3 mb-3 pb-2 border-b border-red-100 ${isAr ? 'flex-row-reverse text-right' : 'text-left'}`}>
+                            <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-lg flex-shrink-0 shadow-sm">
                               ▶️
                             </div>
                             <div>
-                              <p className="font-bold text-slate-900 text-sm">
+                              <p className="font-extrabold text-slate-900 text-base">
                                 {isAr ? `فيديو تعليمي: شرح ${tech.nameAr}` : `Educational Video: ${tech.nameEn}`}
                               </p>
                               <p className="text-slate-500 text-xs">
-                                {isAr ? 'شاهد شرحًا مرئيًا تفاعليًا لهذه التقنية' : 'Watch an interactive visual explanation'}
+                                {isAr ? 'شاهد شرحًا مرئيًا وتطبيقيًا لهذه التقنية' : 'Watch an interactive visual demonstration'}
                               </p>
                             </div>
                           </div>
-                          <button
-                            onClick={() => openVideo(tech.youtubeVideoId, 'youtube')}
-                            className="touch-target px-5 py-2.5 rounded-xl bg-red-600 text-white font-semibold text-sm
-                              hover:bg-red-700 active:scale-95 transition-all cursor-pointer flex items-center gap-2 shadow-sm whitespace-nowrap"
-                          >
-                            <span>▶️</span>
-                            <span>{isAr ? 'تشغيل الفيديو' : 'Watch Video'}</span>
-                          </button>
+
+                          <div className="aspect-video w-full rounded-xl overflow-hidden shadow-md bg-black border border-red-100">
+                            <iframe
+                              src={`https://www.youtube.com/embed/${tech.youtubeVideoId}?rel=0&modestbranding=1`}
+                              title={tech.nameEn}
+                              className="w-full h-full"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowFullScreen
+                            />
+                          </div>
                         </div>
 
                         {/* Think question */}

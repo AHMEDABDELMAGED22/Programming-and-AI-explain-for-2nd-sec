@@ -256,39 +256,38 @@ export default function MooresLaw() {
           )}
         </div>
 
-        {/* Video Card */}
+        {/* Embedded Video Card */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto mt-8 card-interactive p-6 bg-gradient-to-r from-red-50 to-orange-50 border border-red-200"
+          className="max-w-3xl mx-auto mt-8 card-interactive p-6 bg-gradient-to-br from-red-50/70 via-white to-orange-50/70 border-2 border-red-200 shadow-md"
         >
-          <div className={`flex flex-col sm:flex-row items-center justify-between gap-4 ${isAr ? 'sm:flex-row-reverse' : ''}`}>
-            <div className={`flex items-center gap-4 ${isAr ? 'flex-row-reverse text-right' : 'text-left'}`}>
-              <div className="w-14 h-14 rounded-2xl bg-red-600 text-white flex items-center justify-center text-2xl shadow-md flex-shrink-0">
-                ▶️
-              </div>
-              <div>
-                <h4 className="font-bold text-slate-900 text-lg">
-                  {isAr ? 'فيديو تعليمي: شرح قانون مور (Moore\'s Law)' : 'Educational Video: Moore\'s Law Explained'}
-                </h4>
-                <p className="text-slate-600 text-sm mt-0.5">
-                  {isAr
-                    ? 'شاهد كيف يتضاعف عدد الترانزستورات ولماذا يقترب من الحدود الفيزيائية'
-                    : 'Watch how transistor count doubles and why it is approaching physical limits'}
-                </p>
-              </div>
+          <div className={`flex items-center gap-3 mb-4 pb-3 border-b border-red-100 ${isAr ? 'flex-row-reverse text-right' : 'text-left'}`}>
+            <div className="w-11 h-11 rounded-2xl bg-red-600 text-white flex items-center justify-center text-xl shadow-md flex-shrink-0">
+              ▶️
             </div>
-            <motion.button
-              onClick={() => openVideo('AQBh9soLSkI', 'youtube')}
-              className="touch-target px-6 py-3 rounded-xl bg-red-600 text-white font-semibold shadow-md
-                hover:bg-red-700 active:scale-95 transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap"
-              whileTap={{ scale: 0.95 }}
-              whileHover={{ scale: 1.02 }}
-            >
-              <span>▶️</span>
-              <span>{isAr ? 'تشغيل الفيديو' : 'Watch Video'}</span>
-            </motion.button>
+            <div>
+              <h4 className="font-extrabold text-slate-900 text-lg md:text-xl">
+                {isAr ? 'فيديو تعليمي: شرح قانون مور (Educational Video: Moore\'s Law Explained)' : 'Educational Video: Moore\'s Law Explained'}
+              </h4>
+              <p className="text-slate-600 text-xs md:text-sm">
+                {isAr
+                  ? 'شاهد كيف يتضاعف عدد الترانزستورات وأسباب اقتراب التكنولوجيا من حدودها الفيزيائية'
+                  : 'Watch how transistor count doubles and why technology is approaching physical limits'}
+              </p>
+            </div>
+          </div>
+
+          {/* Direct Embedded Video Player */}
+          <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-red-200 bg-black">
+            <iframe
+              src="https://www.youtube.com/embed/AQBh9soLSkI?rel=0&modestbranding=1"
+              title="Moore's Law Explained"
+              className="w-full h-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
           </div>
         </motion.div>
 

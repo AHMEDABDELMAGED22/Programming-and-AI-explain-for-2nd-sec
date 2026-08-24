@@ -259,30 +259,30 @@ export default function ComparisonSection() {
                     initial={{ opacity: 0, y: 15 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
-                    className="max-w-3xl mx-auto mb-8 card-interactive p-5 bg-gradient-to-r from-red-50 to-pink-50 border border-red-200"
+                    className="max-w-3xl mx-auto mb-8 card-interactive p-5 bg-gradient-to-br from-red-50/80 via-white to-pink-50/80 border-2 border-red-200 shadow-md"
                   >
-                    <div className={`flex flex-col sm:flex-row items-center justify-between gap-3 ${isAr ? 'sm:flex-row-reverse' : ''}`}>
-                      <div className={`flex items-center gap-3 ${isAr ? 'flex-row-reverse text-right' : 'text-left'}`}>
-                        <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-lg flex-shrink-0">
-                          ▶️
-                        </div>
-                        <div>
-                          <p className="font-bold text-slate-900 text-sm">
-                            {isAr ? `فيديو تعليمي: مقارنة ${comp.titleAr}` : `Educational Video: ${comp.titleEn}`}
-                          </p>
-                          <p className="text-slate-500 text-xs">
-                            {isAr ? 'شاهد شرحًا مرئيًا للفروق العملية بين التقنيتين' : 'Watch a visual comparison explaining the practical differences'}
-                          </p>
-                        </div>
+                    <div className={`flex items-center gap-3 mb-3 pb-2 border-b border-red-100 ${isAr ? 'flex-row-reverse text-right' : 'text-left'}`}>
+                      <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-lg flex-shrink-0 shadow-sm">
+                        ▶️
                       </div>
-                      <button
-                        onClick={() => openVideo(comp.videoId!, 'youtube')}
-                        className="touch-target px-5 py-2.5 rounded-xl bg-red-600 text-white font-semibold text-sm
-                          hover:bg-red-700 active:scale-95 transition-all cursor-pointer flex items-center gap-2 shadow-sm whitespace-nowrap"
-                      >
-                        <span>▶️</span>
-                        <span>{isAr ? 'تشغيل الفيديو' : 'Watch Video'}</span>
-                      </button>
+                      <div>
+                        <p className="font-extrabold text-slate-900 text-base">
+                          {isAr ? `فيديو تعليمي: مقارنة ${comp.titleAr}` : `Educational Video: ${comp.titleEn}`}
+                        </p>
+                        <p className="text-slate-500 text-xs">
+                          {isAr ? 'شاهد شرحًا مرئيًا وتطبيقيًا للفروق بين التقنيتين' : 'Watch a visual demonstration explaining the practical differences'}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="aspect-video w-full rounded-xl overflow-hidden shadow-md bg-black border border-red-100">
+                      <iframe
+                        src={`https://www.youtube.com/embed/${comp.videoId}?rel=0&modestbranding=1`}
+                        title={comp.titleEn}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
                     </div>
                   </motion.div>
                 )}
