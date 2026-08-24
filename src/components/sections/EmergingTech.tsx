@@ -194,14 +194,30 @@ export default function EmergingTech() {
                           </div>
                         )}
 
-                        {/* Video button */}
-                        <button
-                          onClick={() => openVideo(tech.youtubeVideoId, 'youtube')}
-                          className={`touch-target flex items-center gap-2 px-6 py-3 rounded-xl bg-red-50 border border-red-200 text-red-700 font-medium
-                            hover:bg-red-100 active:scale-95 transition-all cursor-pointer ${isAr ? 'flex-row-reverse' : ''}`}
-                        >
-                          ▶️ {t('watchExplanation', 'شاهد فيديو الشرح')}
-                        </button>
+                        {/* Video card */}
+                        <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                          <div className={`flex items-center gap-3 ${isAr ? 'flex-row-reverse text-right' : 'text-left'}`}>
+                            <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-lg flex-shrink-0">
+                              ▶️
+                            </div>
+                            <div>
+                              <p className="font-bold text-slate-900 text-sm">
+                                {isAr ? `فيديو تعليمي: شرح ${tech.nameAr}` : `Educational Video: ${tech.nameEn}`}
+                              </p>
+                              <p className="text-slate-500 text-xs">
+                                {isAr ? 'شاهد شرحًا مرئيًا تفاعليًا لهذه التقنية' : 'Watch an interactive visual explanation'}
+                              </p>
+                            </div>
+                          </div>
+                          <button
+                            onClick={() => openVideo(tech.youtubeVideoId, 'youtube')}
+                            className="touch-target px-5 py-2.5 rounded-xl bg-red-600 text-white font-semibold text-sm
+                              hover:bg-red-700 active:scale-95 transition-all cursor-pointer flex items-center gap-2 shadow-sm whitespace-nowrap"
+                          >
+                            <span>▶️</span>
+                            <span>{isAr ? 'تشغيل الفيديو' : 'Watch Video'}</span>
+                          </button>
+                        </div>
 
                         {/* Think question */}
                         <StopAndThink

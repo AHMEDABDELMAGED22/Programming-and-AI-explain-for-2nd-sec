@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { useTranslation } from '@/lib/i18n';
+import { useLessonStore } from '@/store/lessonStore';
 import StopAndThink from '@/components/interactive/StopAndThink';
 
 interface ComparisonItem {
@@ -28,6 +29,7 @@ interface ComparisonData {
   right: ComparisonItem;
   differenceEn: string;
   differenceAr: string;
+  videoId?: string;
   thinkQuestionEn: string;
   thinkQuestionAr: string;
   thinkHintEn?: string;
@@ -69,6 +71,7 @@ const comparisons: ComparisonData[] = [
     },
     differenceEn: 'Cloud computing sends data far away for processing (powerful but slow). Edge computing processes data locally (fast but limited). Autonomous driving uses edge computing because a delay of even 0.1 seconds can lead to an accident.',
     differenceAr: 'الحوسبة السحابية ترسل البيانات بعيدًا للمعالجة (قوية لكن بطيئة). الحوسبة الطرفية تعالج البيانات محليًا (سريعة لكن محدودة). القيادة الذاتية تستخدم الحوسبة الطرفية لأن تأخيرًا ولو 0.1 ثانية قد يؤدي إلى حادث.',
+    videoId: 'cEOUeItHDdo',
     thinkQuestionEn: 'In autonomous driving, why is it necessary to process data instantly on the vehicle side using edge computing, rather than sending the data to the cloud for judgment?',
     thinkQuestionAr: 'في القيادة الذاتية، لماذا يجب معالجة البيانات فورًا على جانب المركبة باستخدام الحوسبة الطرفية، بدلاً من إرسال البيانات إلى السحابة للحكم؟',
     thinkHintEn: 'Think about what happens if there is a 0.1 second delay while driving at high speed.',
@@ -108,6 +111,7 @@ const comparisons: ComparisonData[] = [
     },
     differenceEn: 'AR keeps you connected to the real world and adds digital elements on top. VR disconnects you from the real world and replaces it with a virtual one. AR uses your phone camera; VR uses a headset that covers your eyes.',
     differenceAr: 'الواقع المعزز يُبقيك متصلاً بالعالم الحقيقي ويضيف عناصر رقمية فوقه. الواقع الافتراضي يفصلك عن العالم الحقيقي ويستبدله بعالم افتراضي. الواقع المعزز يستخدم كاميرا هاتفك؛ الواقع الافتراضي يستخدم سماعة رأس تغطي عينيك.',
+    videoId: 'WxzcD04rwc8',
     thinkQuestionEn: 'If you wanted to explore a historical site from your classroom, would you use AR or VR? Why?',
     thinkQuestionAr: 'إذا كنت تريد استكشاف موقع تاريخي من فصلك الدراسي، هل ستستخدم الواقع المعزز أم الواقع الافتراضي؟ لماذا؟',
     thinkHintEn: 'Think about whether you need to see your real classroom while exploring, or be fully immersed in the historical site.',
@@ -117,6 +121,7 @@ const comparisons: ComparisonData[] = [
 
 export default function ComparisonSection() {
   const { t, dir, isAr } = useTranslation();
+  const { openVideo } = useLessonStore();
   const [activeComparison, setActiveComparison] = useState<string | null>(null);
 
   return (
@@ -247,6 +252,40 @@ export default function ComparisonSection() {
                     </div>
                   </div>
                 </motion.div>
+
+                {/* Video Card */}
+                {comp.videoId && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    className="max-w-3xl mx-auto mb-8 card-interactive p-5 bg-gradient-to-r from-red-50 to-pink-50 border border-red-200"
+                  >
+                    <div className={`flex flex-col sm:flex-row items-center justify-between gap-3 ${isAr ? 'sm:flex-row-reverse' : ''}`}>
+                      <div className={`flex items-center gap-3 ${isAr ? 'flex-row-reverse text-right' : 'text-left'}`}>
+                        <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-lg flex-shrink-0">
+                          ▶️
+                        </div>
+                        <div>
+                          <p className="font-bold text-slate-900 text-sm">
+                            {isAr ? `فيديو تعليمي: مقارنة ${comp.titleAr}` : `Educational Video: ${comp.titleEn}`}
+                          </p>
+                          <p className="text-slate-500 text-xs">
+                            {isAr ? 'شاهد شرحًا مرئيًا للفروق العملية بين التقنيتين' : 'Watch a visual comparison explaining the practical differences'}
+                          </p>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => openVideo(comp.videoId!, 'youtube')}
+                        className="touch-target px-5 py-2.5 rounded-xl bg-red-600 text-white font-semibold text-sm
+                          hover:bg-red-700 active:scale-95 transition-all cursor-pointer flex items-center gap-2 shadow-sm whitespace-nowrap"
+                      >
+                        <span>▶️</span>
+                        <span>{isAr ? 'تشغيل الفيديو' : 'Watch Video'}</span>
+                      </button>
+                    </div>
+                  </motion.div>
+                )}
 
                 {/* Think question */}
                 <div className="max-w-3xl mx-auto">

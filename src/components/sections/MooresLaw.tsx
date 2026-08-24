@@ -256,16 +256,41 @@ export default function MooresLaw() {
           )}
         </div>
 
-        {/* Video + Think */}
-        <div className={`max-w-3xl mx-auto mt-8 flex flex-col sm:flex-row gap-4 ${isAr ? 'sm:flex-row-reverse' : ''}`}>
-          <button
-            onClick={() => openVideo('AQBh9soLSkI', 'youtube')}
-            className="touch-target flex items-center gap-2 px-6 py-3 rounded-xl bg-red-50 border border-red-200 text-red-700 font-medium
-              hover:bg-red-100 active:scale-95 transition-all cursor-pointer"
-          >
-            ▶️ {t('watchMoores', 'شاهد: شرح قانون مور')}
-          </button>
-        </div>
+        {/* Video Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-3xl mx-auto mt-8 card-interactive p-6 bg-gradient-to-r from-red-50 to-orange-50 border border-red-200"
+        >
+          <div className={`flex flex-col sm:flex-row items-center justify-between gap-4 ${isAr ? 'sm:flex-row-reverse' : ''}`}>
+            <div className={`flex items-center gap-4 ${isAr ? 'flex-row-reverse text-right' : 'text-left'}`}>
+              <div className="w-14 h-14 rounded-2xl bg-red-600 text-white flex items-center justify-center text-2xl shadow-md flex-shrink-0">
+                ▶️
+              </div>
+              <div>
+                <h4 className="font-bold text-slate-900 text-lg">
+                  {isAr ? 'فيديو تعليمي: شرح قانون مور (Moore\'s Law)' : 'Educational Video: Moore\'s Law Explained'}
+                </h4>
+                <p className="text-slate-600 text-sm mt-0.5">
+                  {isAr
+                    ? 'شاهد كيف يتضاعف عدد الترانزستورات ولماذا يقترب من الحدود الفيزيائية'
+                    : 'Watch how transistor count doubles and why it is approaching physical limits'}
+                </p>
+              </div>
+            </div>
+            <motion.button
+              onClick={() => openVideo('AQBh9soLSkI', 'youtube')}
+              className="touch-target px-6 py-3 rounded-xl bg-red-600 text-white font-semibold shadow-md
+                hover:bg-red-700 active:scale-95 transition-all cursor-pointer flex items-center gap-2 whitespace-nowrap"
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+            >
+              <span>▶️</span>
+              <span>{isAr ? 'تشغيل الفيديو' : 'Watch Video'}</span>
+            </motion.button>
+          </div>
+        </motion.div>
 
         {/* Stop and Think */}
         <div className="max-w-3xl mx-auto mt-8">
