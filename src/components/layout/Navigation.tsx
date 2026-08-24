@@ -14,6 +14,7 @@ const sections = [
   { id: 'comparisons', labelEn: 'Compare', labelAr: 'مقارنات', icon: '⚖️' },
   { id: 'practice', labelEn: 'Practice', labelAr: 'تدريب', icon: '✏️' },
   { id: 'exam', labelEn: 'Exam', labelAr: 'امتحان', icon: '📝' },
+  { id: 'stop-and-think', labelEn: 'Think', labelAr: 'تفكير', icon: '💭' },
   { id: 'review', labelEn: 'Review', labelAr: 'مراجعة', icon: '⭐' },
 ];
 

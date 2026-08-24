@@ -31,6 +31,7 @@ export default function TeacherToolbar() {
     { id: 'comparisons', labelEn: '⚖️ Comparisons', labelAr: '⚖️ المقارنات' },
     { id: 'practice', labelEn: '✏️ Practice', labelAr: '✏️ التدريبات' },
     { id: 'exam', labelEn: '📝 Exam', labelAr: '📝 الامتحان' },
+    { id: 'stop-and-think', labelEn: '💭 Stop & Think', labelAr: '💭 توقف وفكر' },
     { id: 'review', labelEn: '⭐ Review', labelAr: '⭐ المراجعة' },
   ];
 

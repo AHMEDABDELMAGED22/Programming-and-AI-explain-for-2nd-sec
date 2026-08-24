@@ -13,6 +13,7 @@ import MooresLaw from '@/components/sections/MooresLaw';
 import SocialTransformation from '@/components/sections/SocialTransformation';
 import EmergingTech from '@/components/sections/EmergingTech';
 import ComparisonSection from '@/components/sections/ComparisonSection';
+import StopAndThinkSection from '@/components/sections/StopAndThinkSection';
 import WorkedExample from '@/components/sections/WorkedExample';
 import ExamPreparation from '@/components/sections/ExamPreparation';
 import FinalReview from '@/components/sections/FinalReview';
@@ -23,7 +24,7 @@ export default function LessonPage() {
 
   // Keyboard navigation
   useEffect(() => {
-    const sections = ['intro', 'timeline', 'moores-law', 'social', 'emerging', 'comparisons', 'practice', 'exam', 'review'];
+    const sections = ['intro', 'timeline', 'moores-law', 'social', 'emerging', 'comparisons', 'practice', 'exam', 'stop-and-think', 'review'];
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
@@ -105,6 +106,10 @@ export default function LessonPage() {
         <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
         <ExamPreparation />
+
+        <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
+
+        <StopAndThinkSection />
 
         <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />
 
