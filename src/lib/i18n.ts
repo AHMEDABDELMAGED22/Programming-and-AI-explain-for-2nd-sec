@@ -2,6 +2,7 @@
 // i18n Hook — Language support for bilingual content
 // ============================================================
 import { useLessonStore } from '@/store/lessonStore';
+import { translations, TranslationKey } from '@/data/translations';
 
 export type Locale = 'en' | 'ar';
 
@@ -11,18 +12,25 @@ export type Locale = 'en' | 'ar';
  * - locale: current language
  * - dir: text direction ('ltr' or 'rtl')
  * - isAr: boolean shorthand
- * - t(en, ar): pick the right string
+ * - t(key, fallbackAr?): pick the right string from dictionary or fallback
  */
 export function useTranslation() {
   const locale = useLessonStore((s) => s.locale);
 
-  const t = (en: string, ar: string): string => {
-    return locale === 'ar' ? ar : en;
+  const t = (key: TranslationKey | string, fallbackAr?: string): string => {
+    const dict = translations[locale];
+    if (dict && (key as TranslationKey) in dict) {
+      return (dict as Record<string, string>)[key as string];
+    }
+    if (locale === 'ar' && fallbackAr) {
+      return fallbackAr;
+    }
+    return key;
   };
 
   return {
     locale,
-    dir: locale === 'ar' ? 'rtl' as const : 'ltr' as const,
+    dir: locale === 'ar' ? ('rtl' as const) : ('ltr' as const),
     isAr: locale === 'ar',
     t,
   };
