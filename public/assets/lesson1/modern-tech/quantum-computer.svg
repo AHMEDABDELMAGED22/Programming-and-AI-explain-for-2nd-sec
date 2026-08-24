@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <rect width="800" height="600" fill="#f8fafc"/>
+  <!-- Quantum processor chandelier -->
+  <circle cx="400" cy="200" r="120" fill="none" stroke="#d4a017" stroke-width="3" opacity="0.3"/>
+  <circle cx="400" cy="200" r="90" fill="none" stroke="#d4a017" stroke-width="2" opacity="0.4"/>
+  <circle cx="400" cy="200" r="60" fill="none" stroke="#d4a017" stroke-width="2" opacity="0.5"/>
+  <circle cx="400" cy="200" r="30" fill="#d4a017" opacity="0.15"/>
+  <!-- Center processor -->
+  <circle cx="400" cy="200" r="15" fill="#1e293b"/>
+  <circle cx="400" cy="200" r="10" fill="#3b82f6"/>
+  <!-- Connection lines (wiring) -->
+  <line x1="400" y1="80" x2="400" y2="170" stroke="#d4a017" stroke-width="1.5" opacity="0.6"/>
+  <line x1="400" y1="80" x2="350" y2="150" stroke="#d4a017" stroke-width="1" opacity="0.4"/>
+  <line x1="400" y1="80" x2="450" y2="150" stroke="#d4a017" stroke-width="1" opacity="0.4"/>
+  <line x1="400" y1="80" x2="320" y2="180" stroke="#d4a017" stroke-width="1" opacity="0.3"/>
+  <line x1="400" y1="80" x2="480" y2="180" stroke="#d4a017" stroke-width="1" opacity="0.3"/>
+  <!-- Top mount -->
+  <rect x="370" y="50" width="60" height="35" rx="4" fill="#94a3b8"/>
+  <line x1="400" y1="50" x2="400" y2="30" stroke="#64748b" stroke-width="3"/>
+  <!-- Qubit nodes -->
+  <circle cx="340" cy="160" r="6" fill="#3b82f6"/>
+  <circle cx="460" cy="160" r="6" fill="#3b82f6"/>
+  <circle cx="370" cy="260" r="6" fill="#3b82f6"/>
+  <circle cx="430" cy="260" r="6" fill="#3b82f6"/>
+  <circle cx="320" cy="220" r="6" fill="#3b82f6"/>
+  <circle cx="480" cy="220" r="6" fill="#3b82f6"/>
+  <!-- Glow effect -->
+  <circle cx="400" cy="200" r="130" fill="url(#quantum-glow)" opacity="0.2"/>
+  <defs>
+    <radialGradient id="quantum-glow">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="transparent"/>
+    </radialGradient>
+  </defs>
+  <!-- Cooling chamber -->
+  <rect x="300" y="340" width="200" height="120" rx="12" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="400" y="390" text-anchor="middle" fill="#64748b" font-size="12" font-weight="bold">COOLING SYSTEM</text>
+  <text x="400" y="410" text-anchor="middle" fill="#94a3b8" font-size="10">Near absolute zero</text>
+  <text x="400" y="430" text-anchor="middle" fill="#94a3b8" font-size="10">-273°C</text>
+  <!-- Connection from processor to cooling -->
+  <line x1="400" y1="320" x2="400" y2="340" stroke="#94a3b8" stroke-width="2"/>
+  <!-- Labels -->
+  <text x="400" y="500" text-anchor="middle" fill="#1e293b" font-size="24" font-weight="bold" font-family="sans-serif">Quantum Computer</text>
+  <text x="400" y="530" text-anchor="middle" fill="#64748b" font-size="16" font-family="sans-serif">Using quantum mechanics for computation</text>
+  <text x="400" y="560" text-anchor="middle" fill="#94a3b8" font-size="14" font-family="sans-serif">الحوسبة الكمية</text>
+</svg>
