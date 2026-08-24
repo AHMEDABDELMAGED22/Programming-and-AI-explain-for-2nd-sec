@@ -282,7 +282,7 @@ export default function MooresLaw() {
           {/* Direct Embedded Video Player */}
           <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-red-200 bg-black">
             <iframe
-              src="https://www.youtube.com/embed/AQBh9soLSkI?rel=0&modestbranding=1"
+              src="https://www.youtube.com/embed/6-tKOHICqrI?rel=0&modestbranding=1"
               title="Moore's Law Explained"
               className="w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

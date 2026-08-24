@@ -51,12 +51,12 @@ export const youtubeVideos: YouTubeVideo[] = [
   },
   {
     id: 'yt-moores-law',
-    videoId: 'AQBh9soLSkI',
-    title: "Moore's Law Explained",
-    channel: 'Techquickie',
-    url: 'https://www.youtube.com/watch?v=AQBh9soLSkI',
+    videoId: '6-tKOHICqrI',
+    title: "Integrated Circuits & Moore's Law: Crash Course",
+    channel: 'CrashCourse',
+    url: 'https://www.youtube.com/watch?v=6-tKOHICqrI',
     relatedConcept: 'moores-law',
-    durationMinutes: 5
+    durationMinutes: 12
   },
   {
     id: 'yt-edge-computing',
