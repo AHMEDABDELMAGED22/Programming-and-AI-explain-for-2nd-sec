@@ -1,23 +1,30 @@
 'use client';
 
 import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { useLessonStore } from '@/store/lessonStore';
 import { useTranslation } from '@/lib/i18n';
 import Navigation from '@/components/layout/Navigation';
-import TeacherToolbar from '@/components/layout/TeacherToolbar';
-import CommunityBar from '@/components/layout/CommunityBar';
-import VideoModal from '@/components/interactive/VideoModal';
-import ImageLightbox from '@/components/interactive/ImageLightbox';
 import LessonIntro from '@/components/sections/LessonIntro';
-import InteractiveTimeline from '@/components/sections/InteractiveTimeline';
-import MooresLaw from '@/components/sections/MooresLaw';
-import SocialTransformation from '@/components/sections/SocialTransformation';
-import EmergingTech from '@/components/sections/EmergingTech';
-import ComparisonSection from '@/components/sections/ComparisonSection';
-import StopAndThinkSection from '@/components/sections/StopAndThinkSection';
-import WorkedExample from '@/components/sections/WorkedExample';
-import ExamPreparation from '@/components/sections/ExamPreparation';
-import FinalReview from '@/components/sections/FinalReview';
+
+// Dynamic code splitting for below-the-fold sections & modals (Step 4)
+const InteractiveTimeline = dynamic(() => import('@/components/sections/InteractiveTimeline'), {
+  ssr: true,
+  loading: () => <div className="min-h-[400px] flex items-center justify-center text-slate-400">...</div>,
+});
+const MooresLaw = dynamic(() => import('@/components/sections/MooresLaw'), { ssr: true });
+const SocialTransformation = dynamic(() => import('@/components/sections/SocialTransformation'), { ssr: true });
+const EmergingTech = dynamic(() => import('@/components/sections/EmergingTech'), { ssr: true });
+const ComparisonSection = dynamic(() => import('@/components/sections/ComparisonSection'), { ssr: true });
+const WorkedExample = dynamic(() => import('@/components/sections/WorkedExample'), { ssr: true });
+const ExamPreparation = dynamic(() => import('@/components/sections/ExamPreparation'), { ssr: true });
+const StopAndThinkSection = dynamic(() => import('@/components/sections/StopAndThinkSection'), { ssr: true });
+const FinalReview = dynamic(() => import('@/components/sections/FinalReview'), { ssr: true });
+
+const TeacherToolbar = dynamic(() => import('@/components/layout/TeacherToolbar'), { ssr: false });
+const CommunityBar = dynamic(() => import('@/components/layout/CommunityBar'), { ssr: false });
+const VideoModal = dynamic(() => import('@/components/interactive/VideoModal'), { ssr: false });
+const ImageLightbox = dynamic(() => import('@/components/interactive/ImageLightbox'), { ssr: false });
 
 export default function LessonPage() {
   const { isClassroomMode, setActiveSection, hydrateFromStorage } = useLessonStore();

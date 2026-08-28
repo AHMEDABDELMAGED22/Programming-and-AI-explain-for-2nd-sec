@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { useLessonStore } from '@/store/lessonStore';
 import { useTranslation } from '@/lib/i18n';
 import { timelineEras } from '@/data/timelineData';
@@ -77,16 +78,16 @@ export default function EraExplorer({ eraId }: EraExplorerProps) {
             className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 cursor-pointer group"
             onClick={() => openLightbox({ src: era.image.src, alt: era.image.alt, caption: era.image.caption })}
           >
-            <img
+            <Image
               src={era.image.src}
               alt={era.image.alt}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              onError={(e) => {
-                (e.target as HTMLImageElement).src = `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" fill="%23f1f5f9"><rect width="400" height="300"/><text x="200" y="150" text-anchor="middle" fill="%2394a3b8" font-size="48">${era.icon}</text></svg>`)}`;
-              }}
+              fill
+              sizes="(max-width: 768px) 100vw, 320px"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/50 to-transparent p-3">
-              <p className="text-white text-sm italic">{era.image.caption}</p>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-3 z-10">
+              <p className="text-white text-xs sm:text-sm font-medium italic">{era.image.caption}</p>
             </div>
           </div>
         </motion.div>

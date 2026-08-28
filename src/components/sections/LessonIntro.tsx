@@ -73,6 +73,7 @@ export default function LessonIntro() {
               fill
               className="object-cover"
               sizes="24px"
+              priority
             />
           </div>
           <span className="text-[11px] sm:text-xs font-black text-slate-800">
