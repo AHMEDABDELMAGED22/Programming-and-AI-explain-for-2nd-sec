@@ -45,7 +45,7 @@ export default function LessonIntro() {
   ];
 
   return (
-    <section id="section-intro" className="min-h-screen flex flex-col justify-center px-3 sm:px-6 py-12 md:py-20 max-w-5xl mx-auto relative overflow-hidden bg-mesh-hero" dir={dir}>
+    <section id="section-intro" className="min-h-0 md:min-h-screen flex flex-col justify-start md:justify-center px-3.5 sm:px-6 pt-6 pb-12 md:py-20 max-w-5xl mx-auto relative overflow-hidden bg-mesh-hero" dir={dir}>
       {/* Decorative ambient background blur */}
       <div className="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-indigo-400/10 blur-3xl pointer-events-none" />
       <div className="absolute top-1/2 -right-24 w-96 h-96 rounded-full bg-blue-400/10 blur-3xl pointer-events-none" />
@@ -55,18 +55,18 @@ export default function LessonIntro() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="flex flex-wrap items-center gap-2.5 mb-4"
+        className="flex flex-wrap items-center gap-2 mb-3 sm:mb-4"
       >
         <button
           onClick={handleBadgeClick}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary-600 to-indigo-600 text-white text-xs sm:text-sm font-black tracking-wide shadow-md shadow-primary-500/20 cursor-pointer select-none active:scale-95 transition-transform"
+          className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r from-primary-600 to-indigo-600 text-white text-xs sm:text-sm font-black tracking-wide shadow-md shadow-primary-500/20 cursor-pointer select-none active:scale-95 transition-transform"
           title={isAr ? 'الدرس ١-١' : 'Lesson 1-1'}
         >
           <span>{t('lessonBadge', '📘 الدرس ١-١')}</span>
         </button>
 
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/95 border border-slate-200/90 shadow-xs">
-          <div className="relative w-6 h-6 rounded-full overflow-hidden ring-1 ring-amber-400">
+        <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full bg-white/95 border border-slate-200/90 shadow-2xs">
+          <div className="relative w-5 h-5 sm:w-6 sm:h-6 rounded-full overflow-hidden ring-1 ring-amber-400">
             <Image
               src="/assets/lesson1/avatar.webp"
               alt="أ/ أحمد عبد المجيد"
@@ -75,7 +75,7 @@ export default function LessonIntro() {
               sizes="24px"
             />
           </div>
-          <span className="text-xs font-black text-slate-800">
+          <span className="text-[11px] sm:text-xs font-black text-slate-800">
             {isAr ? 'إعداد وشرح: أ/ أحمد عبد المجيد' : 'Taught by: Eng. Ahmed Abdelmaged'}
           </span>
         </div>
@@ -86,7 +86,7 @@ export default function LessonIntro() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.1 }}
-        className={`text-3xl sm:text-5xl md:text-6xl font-bold text-slate-900 leading-tight mb-2 sm:mb-3 ${isAr ? 'text-right' : ''}`}
+        className={`text-2xl sm:text-4xl md:text-6xl font-bold text-slate-900 leading-tight mb-1.5 sm:mb-3 ${isAr ? 'text-right' : ''}`}
         style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}
       >
         {t('lessonTitle1', 'تطور تكنولوجيا المعلومات')}
@@ -99,52 +99,52 @@ export default function LessonIntro() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className={`text-sm sm:text-base text-slate-500 font-semibold mb-6 ${isAr ? 'text-right font-sans' : 'arabic-text'}`}
+        className={`text-xs sm:text-base text-slate-500 font-semibold mb-4 sm:mb-6 ${isAr ? 'text-right font-sans' : 'arabic-text'}`}
       >
         {isAr ? 'Development of Information Technology & Social Transformation' : 'تطور تكنولوجيا المعلومات والتحول الاجتماعي'}
       </motion.p>
 
-      {/* Mini Visual Progression Timeline (Problem 1 - Visual "Wow" moment on first screen) */}
+      {/* Mini Visual Progression Timeline (Compact on mobile) */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.5 }}
-        className="max-w-4xl mb-8 p-4 sm:p-5 rounded-3xl bg-white/90 backdrop-blur-md border-2 border-indigo-100 shadow-xl relative overflow-hidden"
+        className="max-w-4xl mb-5 sm:mb-8 p-3 sm:p-5 rounded-2xl sm:rounded-3xl bg-white/95 backdrop-blur-md border border-indigo-100 shadow-md sm:shadow-xl relative overflow-hidden"
       >
-        <div className="flex items-center justify-between gap-2 mb-3 pb-2 border-b border-slate-100">
-          <div className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs sm:text-sm font-black text-slate-800 tracking-wide">
+        <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3 pb-1.5 sm:pb-2 border-b border-slate-100">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[11px] sm:text-sm font-black text-slate-800 tracking-wide">
               {isAr ? '⚡ مسار تطور تكنولوجيا المعلومات عبر 5 حقب' : '⚡ 5 Eras of IT Evolution'}
             </span>
           </div>
           <button
             onClick={() => document.getElementById('section-timeline')?.scrollIntoView({ behavior: 'smooth' })}
-            className="text-xs font-bold text-primary-600 hover:text-primary-700 cursor-pointer flex items-center gap-1"
+            className="text-[11px] sm:text-xs font-bold text-primary-600 hover:text-primary-700 cursor-pointer flex items-center gap-1"
           >
             <span>{isAr ? 'استكشف بالتفصيل' : 'Explore Timeline'}</span>
             <span>↓</span>
           </button>
         </div>
 
-        {/* 5 Milestone Cards with connector */}
-        <div className="grid grid-cols-5 gap-1.5 sm:gap-3 relative">
+        {/* 5 Milestone Cards with compact mobile sizing */}
+        <div className="grid grid-cols-5 gap-1 sm:gap-3 relative">
           {[
-            { year: '1940s', titleAr: 'الحواسيب الأولى', titleEn: 'Birth of PC', icon: '🔬', color: 'from-amber-500 to-orange-500', bg: 'bg-amber-50 border-amber-200' },
-            { year: '1970s', titleAr: 'الحاسوب الشخصي', titleEn: 'Personal PC', icon: '💻', color: 'from-blue-500 to-indigo-500', bg: 'bg-blue-50 border-blue-200' },
-            { year: '1990s', titleAr: 'الإنترنت والويب', titleEn: 'Internet & Web', icon: '🌐', color: 'from-cyan-500 to-teal-500', bg: 'bg-cyan-50 border-cyan-200' },
-            { year: '2000s', titleAr: 'الهواتف الذكية', titleEn: 'Smartphones', icon: '📱', color: 'from-purple-500 to-pink-500', bg: 'bg-purple-50 border-purple-200' },
-            { year: '2010s+', titleAr: 'السحابية والذكاء', titleEn: 'Cloud & AI', icon: '☁️', color: 'from-indigo-600 to-violet-600', bg: 'bg-indigo-50 border-indigo-200' },
-          ].map((era, i) => (
+            { year: '1940s', titleAr: 'الحواسيب الأولى', titleEn: 'Birth of PC', icon: '🔬', bg: 'bg-amber-50/80 border-amber-200' },
+            { year: '1970s', titleAr: 'الحاسوب الشخصي', titleEn: 'Personal PC', icon: '💻', bg: 'bg-blue-50/80 border-blue-200' },
+            { year: '1990s', titleAr: 'الإنترنت والويب', titleEn: 'Internet & Web', icon: '🌐', bg: 'bg-cyan-50/80 border-cyan-200' },
+            { year: '2000s', titleAr: 'الهواتف الذكية', titleEn: 'Smartphones', icon: '📱', bg: 'bg-purple-50/80 border-purple-200' },
+            { year: '2010s+', titleAr: 'السحابية والذكاء', titleEn: 'Cloud & AI', icon: '☁️', bg: 'bg-indigo-50/80 border-indigo-200' },
+          ].map((era) => (
             <motion.button
               key={era.year}
-              whileHover={{ scale: 1.05, y: -2 }}
+              whileHover={{ scale: 1.04, y: -2 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => document.getElementById('section-timeline')?.scrollIntoView({ behavior: 'smooth' })}
-              className={`p-2 sm:p-3 rounded-2xl border ${era.bg} flex flex-col items-center justify-center text-center cursor-pointer transition-all shadow-xs`}
+              className={`p-1.5 sm:p-3 rounded-xl sm:rounded-2xl border ${era.bg} flex flex-col items-center justify-center text-center cursor-pointer transition-all shadow-2xs`}
             >
-              <span className="text-xl sm:text-2xl mb-1">{era.icon}</span>
-              <span className="text-[10px] sm:text-xs font-black text-slate-800 leading-tight">
+              <span className="text-base sm:text-2xl mb-0.5 sm:mb-1">{era.icon}</span>
+              <span className="text-[9px] sm:text-xs font-black text-slate-800 leading-tight">
                 {era.year}
               </span>
               <span className="text-[9px] sm:text-[11px] font-bold text-slate-600 truncate max-w-full hidden sm:block mt-0.5">
@@ -155,30 +155,30 @@ export default function LessonIntro() {
         </div>
       </motion.div>
 
-      {/* Opening narrative paragraph with high-contrast badge keywords (Problem 4) */}
+      {/* Opening narrative paragraph with cleanly wrapped badge tags */}
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.5, duration: 0.5 }}
         className="max-w-3xl mb-6 sm:mb-8"
       >
-        <p className={`text-base sm:text-lg text-slate-700 leading-loose sm:leading-loose ${isAr ? 'text-right' : ''}`}>
+        <p className={`text-sm sm:text-lg text-slate-700 leading-relaxed sm:leading-loose ${isAr ? 'text-right' : ''}`}>
           {isAr ? (
             <>
               في يوم عادي، يتفقد طالب في مصر الرسائل على تطبيق{' '}
-              <span className="inline-flex items-center px-2 py-0.5 rounded-lg bg-blue-100/90 text-blue-900 font-extrabold text-sm border border-blue-300 shadow-xs">
+              <span className="inline-flex items-center px-2 py-0.5 mx-0.5 my-0.5 rounded-lg bg-blue-100/90 text-blue-900 font-extrabold text-xs sm:text-sm border border-blue-300 shadow-2xs whitespace-nowrap">
                 📱 SNS
               </span>
               ، ويدفع ثمن الإفطار بتطبيق{' '}
-              <span className="inline-flex items-center px-2 py-0.5 rounded-lg bg-emerald-100/90 text-emerald-900 font-extrabold text-sm border border-emerald-300 shadow-xs">
+              <span className="inline-flex items-center px-2 py-0.5 mx-0.5 my-0.5 rounded-lg bg-emerald-100/90 text-emerald-900 font-extrabold text-xs sm:text-sm border border-emerald-300 shadow-2xs whitespace-nowrap">
                 💳 دفع إلكتروني
               </span>
               ، وينضم إلى درس عبر{' '}
-              <span className="inline-flex items-center px-2 py-0.5 rounded-lg bg-violet-100/90 text-violet-900 font-extrabold text-sm border border-violet-300 shadow-xs">
+              <span className="inline-flex items-center px-2 py-0.5 mx-0.5 my-0.5 rounded-lg bg-violet-100/90 text-violet-900 font-extrabold text-xs sm:text-sm border border-violet-300 shadow-2xs whitespace-nowrap">
                 🎓 التعلم عبر الإنترنت
               </span>
               ، ويطلب كتابًا من متجر{' '}
-              <span className="inline-flex items-center px-2 py-0.5 rounded-lg bg-amber-100/90 text-amber-900 font-extrabold text-sm border border-amber-300 shadow-xs">
+              <span className="inline-flex items-center px-2 py-0.5 mx-0.5 my-0.5 rounded-lg bg-amber-100/90 text-amber-900 font-extrabold text-xs sm:text-sm border border-amber-300 shadow-2xs whitespace-nowrap">
                 🛍️ تجارة إلكترونية
               </span>
               . قبل عشرين عامًا، لم يكن معظم هذا ممكنًا.
@@ -186,19 +186,19 @@ export default function LessonIntro() {
           ) : (
             <>
               On an ordinary day, a student in Egypt checks messages on an{' '}
-              <span className="inline-flex items-center px-2 py-0.5 rounded-lg bg-blue-100 text-blue-900 font-extrabold text-sm border border-blue-300">
+              <span className="inline-flex items-center px-2 py-0.5 mx-0.5 my-0.5 rounded-lg bg-blue-100 text-blue-900 font-extrabold text-xs sm:text-sm border border-blue-300 whitespace-nowrap">
                 📱 SNS app
               </span>
               , pays for breakfast with a{' '}
-              <span className="inline-flex items-center px-2 py-0.5 rounded-lg bg-emerald-100 text-emerald-900 font-extrabold text-sm border border-emerald-300">
+              <span className="inline-flex items-center px-2 py-0.5 mx-0.5 my-0.5 rounded-lg bg-emerald-100 text-emerald-900 font-extrabold text-xs sm:text-sm border border-emerald-300 whitespace-nowrap">
                 💳 cashless app
               </span>
               , joins a lesson through{' '}
-              <span className="inline-flex items-center px-2 py-0.5 rounded-lg bg-violet-100 text-violet-900 font-extrabold text-sm border border-violet-300">
+              <span className="inline-flex items-center px-2 py-0.5 mx-0.5 my-0.5 rounded-lg bg-violet-100 text-violet-900 font-extrabold text-xs sm:text-sm border border-violet-300 whitespace-nowrap">
                 🎓 online learning
               </span>
               , and orders a book from an{' '}
-              <span className="inline-flex items-center px-2 py-0.5 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-sm border border-amber-300">
+              <span className="inline-flex items-center px-2 py-0.5 mx-0.5 my-0.5 rounded-lg bg-amber-100 text-amber-900 font-extrabold text-xs sm:text-sm border border-amber-300 whitespace-nowrap">
                 🛍️ e-commerce shop
               </span>
               . Twenty years ago, most of this was not possible.

@@ -32,8 +32,8 @@ export default function CommunityBar() {
             className="px-4 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white shadow-2xl flex items-center gap-2 text-xs sm:text-sm font-bold border-2 border-white/40 transition-all cursor-pointer touch-target"
             aria-label="Open student community bar"
           >
-            <span>💬</span>
-            <span>{isAr ? 'جروب الواتساب والأسئلة' : 'WhatsApp Group & Help'}</span>
+            <span>📢</span>
+            <span>{isAr ? 'قناة الواتساب والأسئلة' : 'WhatsApp Channel & Help'}</span>
           </motion.button>
         ) : (
           <motion.div
@@ -43,15 +43,15 @@ export default function CommunityBar() {
             exit={{ y: 20, opacity: 0 }}
             className="bg-white/95 backdrop-blur-md border border-slate-200/90 shadow-2xl rounded-2xl p-2 sm:p-2.5 flex items-center gap-2 max-w-[94vw] sm:max-w-md"
           >
-            {/* WhatsApp Student Group CTA (Primary) */}
+            {/* WhatsApp Channel CTA (Primary) */}
             <a
-              href="https://chat.whatsapp.com/GNl1KY1JxJ8G8lhsk3X1V1"
+              href="https://whatsapp.com/channel/0029Vb8yW4J5vKA7zKoNDK0H"
               target="_blank"
               rel="noopener noreferrer"
               className="px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 active:scale-95 text-white font-black text-xs sm:text-sm shadow-md flex items-center gap-1.5 transition-all cursor-pointer flex-shrink-0 whitespace-nowrap"
             >
-              <span>💬</span>
-              <span>{isAr ? 'انضم لجروب الواتساب' : 'Join WhatsApp Group'}</span>
+              <span>📢</span>
+              <span>{isAr ? 'انضم لقناة الواتساب' : 'Join WhatsApp Channel'}</span>
             </a>
 
             {/* "Ask Eng. Ahmed Abdelmaged" Direct WhatsApp CTA with Real Photo (Secondary) */}
