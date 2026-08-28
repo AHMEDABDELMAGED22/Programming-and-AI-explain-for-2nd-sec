@@ -23,19 +23,19 @@ export default function WorkedExample() {
   const questions: BilingualExamQuestion[] = activeTab === 'worked' ? workedExampleQuestions : tryQuestions;
 
   return (
-    <section id="section-practice" className="py-20 px-6 bg-slate-50" dir={dir}>
+    <section id="section-practice" className="py-12 md:py-20 px-3 sm:px-6 bg-slate-50" dir={dir}>
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-8 md:mb-10"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-100 text-primary-700 text-sm font-semibold mb-4">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-100 text-primary-700 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
             {t('practiceBadge', '✏️ تدريب وتطبيق')}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {t('practiceTitle', 'أمثلة محلولة وتدريبات')}
           </h2>
         </motion.div>
@@ -43,21 +43,21 @@ export default function WorkedExample() {
         <TeacherNote
           content="Use the worked examples to model exam technique. Show students the question first, let them think, then reveal the answer step by step. For 'Try' questions, give students 3-5 minutes before revealing solutions."
           type="say"
-          className="mb-8 flex justify-center"
+          className="mb-6 md:mb-8 flex justify-center"
         />
 
         {/* Tab switcher */}
-        <div className={`flex justify-center gap-2 mb-8 ${isAr ? 'flex-row-reverse' : ''}`}>
+        <div className={`flex justify-center gap-2 mb-6 sm:mb-8 ${isAr ? 'flex-row-reverse' : ''}`}>
           <button
             onClick={() => setActiveTab('worked')}
-            className={`px-6 py-3 rounded-xl font-semibold text-sm transition-all cursor-pointer touch-target
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm transition-all cursor-pointer touch-target
               ${activeTab === 'worked' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-slate-600 border border-slate-200'}`}
           >
             {t('workedExample', '✎ مثال محلول')}
           </button>
           <button
             onClick={() => setActiveTab('try')}
-            className={`px-6 py-3 rounded-xl font-semibold text-sm transition-all cursor-pointer touch-target
+            className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm transition-all cursor-pointer touch-target
               ${activeTab === 'try' ? 'bg-primary-600 text-white shadow-md' : 'bg-white text-slate-600 border border-slate-200'}`}
           >
             {t('tryIt', '🎯 جرّب بنفسك')}
@@ -65,7 +65,7 @@ export default function WorkedExample() {
         </div>
 
         {/* Questions */}
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {questions.map((q, i) => {
             const questionText = isAr && q.questionAr ? q.questionAr : q.question;
             const currentOptions = isAr && q.optionsAr ? q.optionsAr : q.options;
@@ -80,21 +80,21 @@ export default function WorkedExample() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="card-interactive p-6"
+                className="card-interactive p-4 sm:p-6"
               >
                 {/* Question */}
-                <div className={`flex items-start gap-3 mb-4 ${isAr ? 'flex-row-reverse' : ''}`}>
-                  <span className="w-8 h-8 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-sm font-bold flex-shrink-0">
+                <div className={`flex items-start gap-2.5 sm:gap-3 mb-3 sm:mb-4 ${isAr ? 'flex-row-reverse' : ''}`}>
+                  <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center text-xs sm:text-sm font-bold flex-shrink-0">
                     {i + 1}
                   </span>
-                  <p className={`text-slate-800 text-lg leading-relaxed flex-1 ${isAr ? 'text-right' : ''}`}>
+                  <p className={`text-slate-800 text-base sm:text-lg leading-relaxed flex-1 ${isAr ? 'text-right' : ''}`}>
                     {questionText}
                   </p>
                 </div>
 
                 {/* Multiple choice options */}
                 {q.type === 'multiple-choice' && currentOptions && (
-                  <div className={`space-y-2 mb-4 ${isAr ? 'mr-11' : 'ml-11'}`}>
+                  <div className={`space-y-2 mb-4 ${isAr ? 'mr-0 sm:mr-11' : 'ml-0 sm:ml-11'}`}>
                     {currentOptions.map((opt) => {
                       const isSelected = selectedAnswers[q.id] === opt.label;
                       const isShowingSolution = showSolutions[q.id];
@@ -103,7 +103,7 @@ export default function WorkedExample() {
                         <button
                           key={opt.label}
                           onClick={() => selectAnswer(q.id, opt.label)}
-                          className={`w-full px-4 py-3 rounded-xl border transition-all cursor-pointer touch-target ${isAr ? 'text-right' : 'text-left'}
+                          className={`w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border transition-all cursor-pointer touch-target ${isAr ? 'text-right' : 'text-left'}
                             ${isShowingSolution && isCorrect
                               ? 'bg-accent-50 border-accent-400 ring-2 ring-accent-300'
                               : isShowingSolution && isSelected && !isCorrect
@@ -113,12 +113,12 @@ export default function WorkedExample() {
                                   : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50'
                             }`}
                         >
-                          <div className={`flex items-center gap-3 ${isAr ? 'flex-row-reverse' : ''}`}>
-                            <span className={`w-7 h-7 rounded-lg flex items-center justify-center text-xs font-bold
+                          <div className={`flex items-center gap-2.5 sm:gap-3 ${isAr ? 'flex-row-reverse' : ''}`}>
+                            <span className={`w-6 h-6 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center text-xs font-bold flex-shrink-0
                               ${isSelected ? 'bg-primary-600 text-white' : 'bg-slate-100 text-slate-600'}`}>
                               {opt.label}
                             </span>
-                            <span className="text-slate-700 text-sm flex-1">{opt.text}</span>
+                            <span className="text-slate-700 text-xs sm:text-sm flex-1">{opt.text}</span>
                             {isShowingSolution && isCorrect && <span className="text-accent-600 font-bold">✓</span>}
                           </div>
                         </button>
@@ -129,7 +129,7 @@ export default function WorkedExample() {
 
                 {/* Matching items */}
                 {q.type === 'matching' && currentMatches && (
-                  <div className={`space-y-2 mb-4 ${isAr ? 'mr-11' : 'ml-11'}`}>
+                  <div className={`space-y-2 mb-4 ${isAr ? 'mr-0 sm:mr-11' : 'ml-0 sm:ml-11'}`}>
                     {currentMatches.map((item) => (
                       <div key={item.label} className={`p-3 rounded-xl bg-slate-50 border border-slate-200 text-sm ${isAr ? 'text-right' : ''}`}>
                         <div className={`flex items-center justify-between gap-2 ${isAr ? 'flex-row-reverse' : ''}`}>

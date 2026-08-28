@@ -47,7 +47,6 @@ const arContent: Record<string, { definition: string; explanation: string; examp
 export default function EmergingTech() {
   const [selectedTech, setSelectedTech] = useState<string | null>('vr');
   const [showDetail, setShowDetail] = useState(true);
-  const { openVideo } = useLessonStore();
   const { t, dir, isAr } = useTranslation();
 
   const handleSelect = (id: string) => {
@@ -69,22 +68,22 @@ export default function EmergingTech() {
   };
 
   return (
-    <section id="section-emerging" className="py-20 px-6" dir={dir}>
+    <section id="section-emerging" className="py-12 md:py-20 px-3 sm:px-6" dir={dir}>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-semibold mb-4">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-100 text-violet-700 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
             {t('emergingBadge', '🚀 تقنيات ناشئة بارزة')}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {t('emergingTitle', 'مستكشف التقنيات الحديثة')}
           </h2>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+          <p className="text-slate-500 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
             {t('emergingSubtitle', 'استكشف التقنيات الناشئة التي تشكّل مستقبلنا')}
           </p>
         </motion.div>
@@ -92,11 +91,11 @@ export default function EmergingTech() {
         <TeacherNote
           content="Cover autonomous driving + edge computing together (they're linked). Then AR vs VR comparison. End with quantum computing."
           type="transition"
-          className="mb-8 flex justify-center"
+          className="mb-6 md:mb-8 flex justify-center"
         />
 
         {/* Tech cards */}
-        <div className={`grid grid-cols-2 lg:grid-cols-5 gap-4 mb-10 ${isAr ? 'direction-rtl' : ''}`}>
+        <div className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-4 mb-8 md:mb-10 ${isAr ? 'direction-rtl' : ''}`}>
           {emergingTechnologies.map((tech, i) => {
             const isSelected = selectedTech === tech.id;
             return (
@@ -105,17 +104,17 @@ export default function EmergingTech() {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
+                transition={{ delay: i * 0.08 }}
                 onClick={() => handleSelect(tech.id)}
-                className={`card-interactive p-5 text-center cursor-pointer touch-target transition-all
-                  ${isSelected ? 'ring-2 ring-violet-400 bg-violet-50 scale-[1.03]' : 'hover:scale-[1.02]'}
-                  ${selectedTech && !isSelected ? 'opacity-50' : ''}`}
+                className={`card-interactive p-3 sm:p-5 flex flex-col items-center justify-center text-center cursor-pointer touch-target transition-all rounded-2xl w-full
+                  ${isSelected ? 'ring-2 ring-violet-400 bg-violet-50 scale-[1.02]' : 'hover:scale-[1.02]'}
+                  ${selectedTech && !isSelected ? 'opacity-60' : ''}`}
               >
-                <span className="text-4xl block mb-3">{iconMap[tech.id] || '🔧'}</span>
-                <h4 className="font-bold text-slate-800 text-sm mb-1">
+                <span className="text-3xl sm:text-4xl block mb-2 sm:mb-3">{iconMap[tech.id] || '🔧'}</span>
+                <h4 className="font-bold text-slate-800 text-xs sm:text-sm mb-1 leading-snug break-words">
                   {isAr ? tech.nameAr : tech.nameEn}
                 </h4>
-                <p className={`text-xs text-slate-400 ${isAr ? 'font-sans' : 'arabic-text'}`}>
+                <p className={`text-[10px] sm:text-xs text-slate-400 leading-tight break-words ${isAr ? 'font-sans' : 'arabic-text'}`}>
                   {isAr ? tech.nameEn : tech.nameAr}
                 </p>
               </motion.button>
@@ -136,12 +135,12 @@ export default function EmergingTech() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.4 }}
-                className="card-interactive p-8 md:p-10 mb-10"
+                className="card-interactive p-4 sm:p-6 md:p-10 mb-8 md:mb-10"
               >
-                <div className={`flex flex-col lg:flex-row gap-8 ${isAr ? 'lg:flex-row-reverse' : ''}`}>
+                <div className={`flex flex-col lg:flex-row gap-6 md:gap-8 ${isAr ? 'lg:flex-row-reverse' : ''}`}>
                   {/* Image side */}
                   {tech.image && (
-                    <div className="lg:w-80 flex-shrink-0">
+                    <div className="w-full lg:w-80 flex-shrink-0">
                       <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100">
                         <img
                           src={tech.image.src}
@@ -153,23 +152,23 @@ export default function EmergingTech() {
                         />
                       </div>
                       {tech.image.caption && (
-                        <p className={`text-sm text-slate-500 italic mt-2 text-center ${isAr ? 'text-right' : ''}`}>{tech.image.caption}</p>
+                        <p className={`text-xs sm:text-sm text-slate-500 italic mt-2 text-center ${isAr ? 'text-right' : ''}`}>{tech.image.caption}</p>
                       )}
                     </div>
                   )}
 
                   {/* Content side */}
                   <div className={`flex-1 ${isAr ? 'text-right' : ''}`}>
-                    <h3 className="text-2xl font-bold text-slate-900 mb-1" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-1" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
                       {isAr ? tech.nameAr : tech.nameEn}
                     </h3>
-                    <p className={`text-slate-400 mb-4 ${isAr ? 'font-sans' : 'arabic-text'}`}>
+                    <p className={`text-slate-400 text-xs sm:text-sm mb-4 ${isAr ? 'font-sans' : 'arabic-text'}`}>
                       {isAr ? tech.nameEn : tech.nameAr}
                     </p>
 
-                    <div className="bg-violet-50 border border-violet-200 rounded-xl p-4 mb-4">
-                      <p className="text-sm font-semibold text-violet-700 mb-1">{t('definition', 'التعريف')}</p>
-                      <p className="text-slate-700">{isAr && ar ? ar.definition : tech.definition}</p>
+                    <div className="bg-violet-50 border border-violet-200 rounded-xl p-3 sm:p-4 mb-4">
+                      <p className="text-xs sm:text-sm font-semibold text-violet-700 mb-1">{t('definition', 'التعريف')}</p>
+                      <p className="text-slate-700 text-sm sm:text-base leading-relaxed">{isAr && ar ? ar.definition : tech.definition}</p>
                     </div>
 
                     {!showDetail ? (
@@ -178,33 +177,33 @@ export default function EmergingTech() {
                       </RevealButton>
                     ) : (
                       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-4">
-                        <p className="text-slate-600 leading-relaxed">
+                        <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
                           {isAr && ar ? ar.explanation : tech.explanation}
                         </p>
 
-                        <div className="bg-slate-50 rounded-xl p-4 border border-slate-100">
-                          <p className="text-sm font-semibold text-slate-500 mb-1">{t('realWorldExamples', '🌍 أمثلة من الواقع')}</p>
-                          <p className="text-slate-700">{isAr && ar ? ar.examples : tech.realWorldExample}</p>
+                        <div className="bg-slate-50 rounded-xl p-3 sm:p-4 border border-slate-100">
+                          <p className="text-xs sm:text-sm font-semibold text-slate-500 mb-1">{t('realWorldExamples', '🌍 أمثلة من الواقع')}</p>
+                          <p className="text-slate-700 text-sm sm:text-base leading-relaxed">{isAr && ar ? ar.examples : tech.realWorldExample}</p>
                         </div>
 
                         {(tech.keyTerm || (isAr && ar?.keyTerm)) && (
-                          <div className="key-fact-card rounded-xl p-4">
-                            <p className="text-sm font-semibold text-primary-700 mb-1">{t('keyTermLabel', '📖 مصطلح مهم')}</p>
-                            <p className="text-slate-700">{isAr && ar?.keyTerm ? ar.keyTerm : tech.keyTerm}</p>
+                          <div className="key-fact-card rounded-xl p-3 sm:p-4">
+                            <p className="text-xs sm:text-sm font-semibold text-primary-700 mb-1">{t('keyTermLabel', '📖 مصطلح مهم')}</p>
+                            <p className="text-slate-700 text-sm sm:text-base">{isAr && ar?.keyTerm ? ar.keyTerm : tech.keyTerm}</p>
                           </div>
                         )}
 
                         {/* Embedded Video Player Card */}
-                        <div className="bg-gradient-to-br from-red-50/80 via-white to-purple-50/80 border-2 border-red-200 rounded-2xl p-5 shadow-sm">
+                        <div className="bg-gradient-to-br from-red-50/80 via-white to-purple-50/80 border-2 border-red-200 rounded-2xl p-3.5 sm:p-5 shadow-sm">
                           <div className={`flex items-center gap-3 mb-3 pb-2 border-b border-red-100 ${isAr ? 'flex-row-reverse text-right' : 'text-left'}`}>
-                            <div className="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-lg flex-shrink-0 shadow-sm">
+                            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-red-600 text-white flex items-center justify-center text-base sm:text-lg flex-shrink-0 shadow-sm">
                               ▶️
                             </div>
                             <div>
-                              <p className="font-extrabold text-slate-900 text-base">
+                              <p className="font-extrabold text-slate-900 text-sm sm:text-base">
                                 {isAr ? `فيديو تعليمي: شرح ${tech.nameAr}` : `Educational Video: ${tech.nameEn}`}
                               </p>
-                              <p className="text-slate-500 text-xs">
+                              <p className="text-slate-500 text-[11px] sm:text-xs">
                                 {isAr ? 'شاهد شرحًا مرئيًا وتطبيقيًا لهذه التقنية' : 'Watch an interactive visual demonstration'}
                               </p>
                             </div>
@@ -242,28 +241,28 @@ export default function EmergingTech() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="card-interactive p-8 max-w-3xl mx-auto"
+          className="card-interactive p-4 sm:p-6 md:p-8 max-w-3xl mx-auto"
         >
-          <h4 className="text-xl font-bold text-slate-800 text-center mb-6" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h4 className="text-lg sm:text-xl font-bold text-slate-800 text-center mb-4 sm:mb-6" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {t('classicalVsQubit', 'البت التقليدي مقابل الكيوبت (Qubit)')}
           </h4>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {/* Classical bit */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-slate-50 rounded-xl p-6 border border-slate-200 text-center"
+              className="bg-slate-50 rounded-xl p-4 sm:p-6 border border-slate-200 text-center"
             >
-              <div className="text-4xl mb-3">🔲</div>
-              <h5 className="font-bold text-slate-800 text-lg mb-2">{t('classicalBit', 'البت التقليدي (Classical Bit)')}</h5>
-              <p className="text-slate-600 text-sm">{t('classicalDesc', 'حالة واحدة محددة في كل مرة')}</p>
-              <div className="flex justify-center gap-4 mt-4">
-                <div className="w-16 h-16 rounded-xl bg-white border-2 border-slate-300 flex items-center justify-center text-2xl font-bold text-slate-700">0</div>
-                <span className="flex items-center text-slate-400 font-bold">{isAr ? 'أو' : 'OR'}</span>
-                <div className="w-16 h-16 rounded-xl bg-white border-2 border-slate-300 flex items-center justify-center text-2xl font-bold text-slate-700">1</div>
+              <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">🔲</div>
+              <h5 className="font-bold text-slate-800 text-base sm:text-lg mb-1 sm:mb-2">{t('classicalBit', 'البت التقليدي (Classical Bit)')}</h5>
+              <p className="text-slate-600 text-xs sm:text-sm">{t('classicalDesc', 'حالة واحدة محددة في كل مرة')}</p>
+              <div className="flex justify-center gap-3 sm:gap-4 mt-3 sm:mt-4">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-white border-2 border-slate-300 flex items-center justify-center text-xl sm:text-2xl font-bold text-slate-700">0</div>
+                <span className="flex items-center text-slate-400 font-bold text-sm">{isAr ? 'أو' : 'OR'}</span>
+                <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-white border-2 border-slate-300 flex items-center justify-center text-xl sm:text-2xl font-bold text-slate-700">1</div>
               </div>
-              <p className="text-xs text-slate-400 mt-3">{t('eitherOr', 'إما 0 أو 1 — لكن ليس كليهما معًا')}</p>
+              <p className="text-xs text-slate-400 mt-2 sm:mt-3">{t('eitherOr', 'إما 0 أو 1 — لكن ليس كليهما معًا')}</p>
             </motion.div>
 
             {/* Qubit */}
@@ -272,20 +271,20 @@ export default function EmergingTech() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="bg-violet-50 rounded-xl p-6 border border-violet-200 text-center"
+              className="bg-violet-50 rounded-xl p-4 sm:p-6 border border-violet-200 text-center"
             >
-              <div className="text-4xl mb-3">⚛️</div>
-              <h5 className="font-bold text-violet-800 text-lg mb-2">{t('qubit', 'الكيوبت (Qubit)')}</h5>
-              <p className="text-violet-600 text-sm">{t('qubitDesc', 'التراكب (Superposition)')}</p>
-              <div className="flex justify-center mt-4">
-                <div className="w-24 h-24 rounded-full bg-gradient-to-br from-violet-300 via-primary-300 to-accent-300 flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">0 + 1</span>
+              <div className="text-3xl sm:text-4xl mb-2 sm:mb-3">⚛️</div>
+              <h5 className="font-bold text-violet-800 text-base sm:text-lg mb-1 sm:mb-2">{t('qubit', 'الكيوبت (Qubit)')}</h5>
+              <p className="text-violet-600 text-xs sm:text-sm">{t('qubitDesc', 'التراكب (Superposition)')}</p>
+              <div className="flex justify-center mt-3 sm:mt-4">
+                <div className="w-18 h-18 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-violet-300 via-primary-300 to-accent-300 flex items-center justify-center">
+                  <span className="text-white font-bold text-base sm:text-lg">0 + 1</span>
                 </div>
               </div>
-              <p className="text-xs text-violet-500 mt-3">{t('bothAtOnce', 'مزيج من 0 و 1 في نفس الوقت')}</p>
+              <p className="text-xs text-violet-500 mt-2 sm:mt-3">{t('bothAtOnce', 'مزيج من 0 و 1 في نفس الوقت')}</p>
             </motion.div>
           </div>
-          <p className={`text-sm text-slate-500 text-center mt-4 italic ${isAr ? 'text-right' : ''}`}>
+          <p className={`text-xs sm:text-sm text-slate-500 text-center mt-4 italic ${isAr ? 'text-right' : ''}`}>
             {isAr
               ? 'التراكب يسمح للعديد من الكيوبتات بتمثيل مساحة أكبر بكثير من الحالات في وقت واحد — مما يتيح معالجة متوازية هائلة لمشاكل معينة.'
               : 'Superposition lets many qubits represent a much larger space of states at once — enabling massive parallel processing for certain problems.'}

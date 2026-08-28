@@ -80,7 +80,7 @@ export default function LessonPage() {
       <Navigation />
 
       {/* Main content */}
-      <main className={`flex-1 transition-all duration-300 ${isClassroomMode ? '' : isAr ? 'mr-20' : 'ml-20'}`}>
+      <main className={`flex-1 transition-all duration-300 ${isClassroomMode ? '' : isAr ? 'mr-0 md:mr-20' : 'ml-0 md:ml-20'} pt-14 pb-20 md:pt-0 md:pb-0`}>
         <LessonIntro />
 
         <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent" />

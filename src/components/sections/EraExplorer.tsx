@@ -63,15 +63,15 @@ export default function EraExplorer({ eraId }: EraExplorerProps) {
   const ar = arDetails[eraId];
 
   return (
-    <div className="card-interactive p-8 md:p-10" dir={dir}>
+    <div className="card-interactive p-4 sm:p-6 md:p-10" dir={dir}>
       {/* Era header */}
-      <div className={`flex flex-col md:flex-row md:items-start gap-8 mb-8 ${isAr ? 'md:flex-row-reverse' : ''}`}>
+      <div className={`flex flex-col md:flex-row md:items-start gap-6 md:gap-8 mb-6 md:mb-8 ${isAr ? 'md:flex-row-reverse' : ''}`}>
         {/* Image */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="w-full md:w-80 flex-shrink-0"
+          className="w-full md:w-72 lg:w-80 flex-shrink-0"
         >
           <div
             className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-slate-100 cursor-pointer group"

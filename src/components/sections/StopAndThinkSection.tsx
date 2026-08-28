@@ -35,22 +35,22 @@ export default function StopAndThinkSection() {
   };
 
   return (
-    <section id="section-stop-and-think" className="py-20 px-6 bg-gradient-to-b from-sky-50/50 via-white to-slate-50" dir={dir}>
+    <section id="section-stop-and-think" className="py-12 md:py-20 px-3 sm:px-6 bg-gradient-to-b from-sky-50/50 via-white to-slate-50" dir={dir}>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-100 text-sky-800 text-sm font-bold mb-4 shadow-sm">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100 text-sky-800 text-xs sm:text-sm font-bold mb-3 sm:mb-4 shadow-sm">
             💭❓ {isAr ? 'أسئلة التفكير الناقد للدرس' : 'Critical Thinking Questions'}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-3" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 sm:mb-3 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {isAr ? 'توقف وفكّر — بنك الأسئلة والمفاهيم' : 'Stop & Think — Question Bank'}
           </h2>
-          <p className="text-slate-600 text-lg max-w-3xl mx-auto leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
             {isAr
               ? 'أسئلة تفكير تطبيقي ونقاشي شاملة لكل موضوع في الدرس الأول لاختبار الفهم العميق وتطبيق المفاهيم في مواقف واقعية.'
               : 'Applied critical thinking and classroom discussion questions covering every topic in Lesson 1 to test deep conceptual understanding.'}
@@ -60,18 +60,18 @@ export default function StopAndThinkSection() {
         <TeacherNote
           content="Use these 'Stop & Think' questions for open classroom debates, group challenges, or end-of-lesson formative assessment. Let students debate their reasoning before revealing the model answers."
           type="question"
-          className="mb-8 flex justify-center"
+          className="mb-6 md:mb-8 flex justify-center"
         />
 
         {/* Topic Filters */}
-        <div className={`flex justify-center gap-2 mb-10 flex-wrap ${isAr ? 'flex-row-reverse' : ''}`}>
+        <div className={`flex justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-10 flex-wrap ${isAr ? 'flex-row-reverse' : ''}`}>
           {topics.map((topic) => {
             const isActive = selectedTopic === topic.id;
             return (
               <button
                 key={topic.id}
                 onClick={() => setSelectedTopic(topic.id)}
-                className={`px-5 py-2.5 rounded-xl font-bold text-sm transition-all cursor-pointer touch-target shadow-sm
+                className={`px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl font-bold text-xs sm:text-sm transition-all cursor-pointer touch-target shadow-sm
                   ${isActive
                     ? 'bg-sky-600 text-white shadow-sky-200 scale-105'
                     : 'bg-white text-slate-600 border border-slate-200 hover:border-sky-300 hover:bg-sky-50/50'
@@ -84,7 +84,7 @@ export default function StopAndThinkSection() {
         </div>
 
         {/* Questions Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {filteredQuestions.map((q, index) => {
             const hasHint = revealedHints[q.id];
             const hasAnswer = revealedAnswers[q.id];
@@ -96,7 +96,7 @@ export default function StopAndThinkSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.08 }}
-                className="rounded-3xl border-2 border-sky-300 bg-gradient-to-br from-sky-50 via-cyan-50/40 to-blue-50 p-6 md:p-7 shadow-md hover:shadow-lg transition-all flex flex-col justify-between"
+                className="rounded-3xl border-2 border-sky-300 bg-gradient-to-br from-sky-50 via-cyan-50/40 to-blue-50 p-4 sm:p-6 md:p-7 shadow-md hover:shadow-lg transition-all flex flex-col justify-between"
               >
                 <div>
                   {/* Card Header matching the user's image */}

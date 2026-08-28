@@ -22,22 +22,22 @@ export default function ExamPreparation() {
   const modelAnswerText = isAr && examStyleQuestion.answerAr ? examStyleQuestion.answerAr : examStyleQuestion.answer;
 
   return (
-    <section id="section-exam" className="py-20 px-6" dir={dir}>
+    <section id="section-exam" className="py-12 md:py-20 px-3 sm:px-6" dir={dir}>
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-8 md:mb-10"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-warm-100 text-warm-600 text-sm font-semibold mb-4">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-warm-100 text-warm-600 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
             {t('examBadge', '📝 التحضير للامتحان')}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {t('examTitle', 'سؤال بأسلوب الامتحان')}
           </h2>
-          <p className="text-slate-500 text-lg">
+          <p className="text-slate-500 text-sm sm:text-base md:text-lg">
             {t('examSubtitle', 'تدرّب على الإجابة كما في الامتحان الحقيقي')}
           </p>
         </motion.div>
@@ -45,7 +45,7 @@ export default function ExamPreparation() {
         <TeacherNote
           content="Walk through this step by step. Show the question first. Highlight the command word 'Analyze'. Give students 30 seconds to think. Then reveal hints one by one. Finally show the model answer structure. Emphasize that all 3 required areas must be covered for full marks."
           type="say"
-          className="mb-8 flex justify-center"
+          className="mb-6 md:mb-8 flex justify-center"
         />
 
         {/* Exam question card */}
@@ -53,10 +53,10 @@ export default function ExamPreparation() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="card-interactive p-8 md:p-10"
+          className="card-interactive p-4 sm:p-6 md:p-10"
         >
           {/* Question */}
-          <div className="exam-tip-card rounded-2xl p-6 mb-6">
+          <div className="exam-tip-card rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6">
             <div className={`flex items-start gap-3 ${isAr ? 'flex-row-reverse' : ''}`}>
               <span className="text-3xl">📝</span>
               <div className={isAr ? 'text-right' : ''}>

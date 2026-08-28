@@ -125,33 +125,33 @@ export default function ComparisonSection() {
   const [activeComparison, setActiveComparison] = useState<string | null>(null);
 
   return (
-    <section id="section-comparisons" className="py-20 px-6 bg-slate-50" dir={dir}>
+    <section id="section-comparisons" className="py-12 md:py-20 px-3 sm:px-6 bg-slate-50" dir={dir}>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-100 text-violet-700 text-sm font-semibold mb-4">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-100 text-violet-700 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
             {t('comparisonsBadge', '⚖️ مقارنات مهمة')}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2" style={{ fontFamily: 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 leading-tight" style={{ fontFamily: 'var(--font-heading)' }}>
             {t('comparisonsTitle', 'قارن وميّز')}
           </h2>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+          <p className="text-slate-500 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
             {t('comparisonsSubtitle', 'افهم الفروقات الأساسية بين التقنيات المتشابهة')}
           </p>
         </motion.div>
 
         {/* Comparison selector tabs */}
-        <div className={`flex justify-center gap-3 mb-10 flex-wrap ${isAr ? 'flex-row-reverse' : ''}`}>
+        <div className={`flex justify-center gap-2 sm:gap-3 mb-8 sm:mb-10 flex-wrap ${isAr ? 'flex-row-reverse' : ''}`}>
           {comparisons.map((comp) => (
             <button
               key={comp.id}
               onClick={() => setActiveComparison(activeComparison === comp.id ? null : comp.id)}
-              className={`px-6 py-3 rounded-xl font-semibold text-sm transition-all cursor-pointer touch-target
+              className={`px-3.5 sm:px-6 py-2.5 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm transition-all cursor-pointer touch-target
                 ${activeComparison === comp.id
                   ? 'bg-violet-600 text-white shadow-md'
                   : 'bg-white text-slate-600 border border-slate-200 hover:border-violet-300'

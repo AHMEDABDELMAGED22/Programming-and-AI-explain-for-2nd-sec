@@ -6,7 +6,6 @@ import { mooresLawData, mooresLawDefinition, mooresLawDefinitionAr, mooresLawLim
 import { useLessonStore } from '@/store/lessonStore';
 import { useTranslation } from '@/lib/i18n';
 import RevealButton from '@/components/interactive/RevealButton';
-import ThinkPrompt from '@/components/interactive/ThinkPrompt';
 import TeacherNote from '@/components/interactive/TeacherNote';
 import StopAndThink from '@/components/interactive/StopAndThink';
 import AvatarCallout from '@/components/interactive/AvatarCallout';
@@ -14,7 +13,7 @@ import AvatarCallout from '@/components/interactive/AvatarCallout';
 export default function MooresLaw() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-100px' });
-  const { openVideo, animationResetKey } = useLessonStore();
+  const { animationResetKey } = useLessonStore();
   const { t, dir, isAr } = useTranslation();
   const [showLimits, setShowLimits] = useState(false);
   const [showFuture, setShowFuture] = useState(false);
@@ -52,22 +51,22 @@ export default function MooresLaw() {
   const xAxisLabels = [1970, 1980, 1990, 2000, 2010, 2020];
 
   return (
-    <section id="section-moores-law" className="py-20 px-6" ref={ref} dir={dir}>
+    <section id="section-moores-law" className="py-12 md:py-20 px-3 sm:px-6" ref={ref} dir={dir}>
       <div className="max-w-5xl mx-auto" key={animationResetKey}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-warm-100 text-warm-600 text-sm font-semibold mb-4">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-warm-100 text-warm-600 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
             {t('mooresBadge', '📈 فهم النمو')}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {isAr ? 'قانون مور' : "Moore\u2019s Law"}
           </h2>
-          <p className={`text-slate-400 text-lg ${isAr ? 'font-sans' : 'arabic-text'}`}>
+          <p className={`text-slate-400 text-base sm:text-lg ${isAr ? 'font-sans' : 'arabic-text'}`}>
             {isAr ? "Moore's Law" : 'قانون مور'}
           </p>
         </motion.div>
@@ -75,7 +74,7 @@ export default function MooresLaw() {
         <TeacherNote
           content="Moore's Law explains WHY computing advanced so rapidly. Show the chart animation first, then reveal the definition. Common misconception: students think it's an actual physical law — emphasize it's an empirical observation (a pattern noticed in data), not a rule of physics."
           type="misconception"
-          className="mb-8 flex justify-center"
+          className="mb-6 md:mb-8 flex justify-center"
         />
 
         {/* Interactive Chart */}
@@ -83,14 +82,14 @@ export default function MooresLaw() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="card-interactive p-6 md:p-8 mb-8"
+          className="card-interactive p-4 sm:p-6 md:p-8 mb-6 sm:mb-8"
         >
-          <h3 className="text-xl font-bold text-slate-800 mb-4 text-center" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h3 className="text-lg sm:text-xl font-bold text-slate-800 mb-4 text-center" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {t('mooresChartTitle', 'قانون مور: عدد الترانزستورات عبر الزمن')}
           </h3>
 
-          <div className="overflow-x-auto">
-            <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full max-w-3xl mx-auto" style={{ minWidth: 500 }}>
+          <div className="w-full overflow-hidden">
+            <svg viewBox={`0 0 ${chartW} ${chartH}`} className="w-full max-w-3xl mx-auto h-auto">
               {/* Grid lines */}
               {yAxisLabels.map(({ value }) => (
                 <motion.line
@@ -204,13 +203,13 @@ export default function MooresLaw() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="key-fact-card rounded-2xl p-6 mb-8 max-w-3xl mx-auto"
+          className="key-fact-card rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 max-w-3xl mx-auto"
         >
           <div className={`flex items-start gap-3 ${isAr ? 'flex-row-reverse' : ''}`}>
-            <span className="text-2xl">📖</span>
+            <span className="text-2xl flex-shrink-0">📖</span>
             <div className={isAr ? 'text-right' : ''}>
-              <h4 className="font-semibold text-primary-800 mb-1">{isAr ? "قانون مور (Moore's Law)" : "Moore\u2019s Law"}</h4>
-              <p className="text-slate-700 text-lg">{isAr ? mooresLawDefinitionAr : mooresLawDefinition}</p>
+              <h4 className="font-semibold text-primary-800 mb-1 text-base sm:text-lg">{isAr ? "قانون مور (Moore's Law)" : "Moore\u2019s Law"}</h4>
+              <p className="text-slate-700 text-sm sm:text-base md:text-lg leading-relaxed">{isAr ? mooresLawDefinitionAr : mooresLawDefinition}</p>
             </div>
           </div>
         </motion.div>
@@ -218,7 +217,7 @@ export default function MooresLaw() {
         <AvatarCallout
           message={isAr ? 'ظل هذا دقيقًا لسنوات عديدة — لكن هل لا يزال صحيحًا اليوم؟' : 'This remained accurate for many years — but is it still true today?'}
           type="think"
-          className="mb-8 max-w-3xl mx-auto"
+          className="mb-6 sm:mb-8 max-w-3xl mx-auto"
         />
 
         {/* Physical limits */}
@@ -228,11 +227,11 @@ export default function MooresLaw() {
               <></>
             </RevealButton>
           ) : (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="exam-tip-card rounded-2xl p-6">
-              <h4 className={`font-semibold text-warm-700 text-lg mb-2 flex items-center gap-2 ${isAr ? 'flex-row-reverse' : ''}`}>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="exam-tip-card rounded-2xl p-4 sm:p-6">
+              <h4 className={`font-semibold text-warm-700 text-base sm:text-lg mb-2 flex items-center gap-2 ${isAr ? 'flex-row-reverse' : ''}`}>
                 {t('approachingLimits', '⚠️ الاقتراب من الحدود الفيزيائية')}
               </h4>
-              <p className={`text-slate-700 leading-relaxed ${isAr ? 'text-right' : ''}`}>
+              <p className={`text-slate-700 text-sm sm:text-base leading-relaxed ${isAr ? 'text-right' : ''}`}>
                 {isAr ? mooresLawLimitsAr : mooresLawLimits}
               </p>
             </motion.div>
@@ -245,11 +244,11 @@ export default function MooresLaw() {
           )}
 
           {showFuture && (
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-accent-50 border border-accent-200 rounded-2xl p-6">
-              <h4 className={`font-semibold text-accent-700 text-lg mb-2 flex items-center gap-2 ${isAr ? 'flex-row-reverse' : ''}`}>
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-accent-50 border border-accent-200 rounded-2xl p-4 sm:p-6">
+              <h4 className={`font-semibold text-accent-700 text-base sm:text-lg mb-2 flex items-center gap-2 ${isAr ? 'flex-row-reverse' : ''}`}>
                 {t('newDirections', '🚀 اتجاهات جديدة')}
               </h4>
-              <p className={`text-slate-700 leading-relaxed ${isAr ? 'text-right' : ''}`}>
+              <p className={`text-slate-700 text-sm sm:text-base leading-relaxed ${isAr ? 'text-right' : ''}`}>
                 {isAr ? mooresLawFutureAr : mooresLawFuture}
               </p>
             </motion.div>
@@ -261,17 +260,17 @@ export default function MooresLaw() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto mt-8 card-interactive p-6 bg-gradient-to-br from-red-50/70 via-white to-orange-50/70 border-2 border-red-200 shadow-md"
+          className="max-w-3xl mx-auto mt-6 sm:mt-8 card-interactive p-4 sm:p-6 bg-gradient-to-br from-red-50/70 via-white to-orange-50/70 border-2 border-red-200 shadow-md"
         >
-          <div className={`flex items-center gap-3 mb-4 pb-3 border-b border-red-100 ${isAr ? 'flex-row-reverse text-right' : 'text-left'}`}>
-            <div className="w-11 h-11 rounded-2xl bg-red-600 text-white flex items-center justify-center text-xl shadow-md flex-shrink-0">
+          <div className={`flex items-center gap-3 mb-3 sm:mb-4 pb-2 sm:pb-3 border-b border-red-100 ${isAr ? 'flex-row-reverse text-right' : 'text-left'}`}>
+            <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-2xl bg-red-600 text-white flex items-center justify-center text-lg sm:text-xl shadow-md flex-shrink-0">
               ▶️
             </div>
             <div>
-              <h4 className="font-extrabold text-slate-900 text-lg md:text-xl">
+              <h4 className="font-extrabold text-slate-900 text-base sm:text-lg md:text-xl">
                 {isAr ? 'فيديو تعليمي: شرح قانون مور (Educational Video: Moore\'s Law Explained)' : 'Educational Video: Moore\'s Law Explained'}
               </h4>
-              <p className="text-slate-600 text-xs md:text-sm">
+              <p className="text-slate-600 text-xs sm:text-sm">
                 {isAr
                   ? 'شاهد كيف يتضاعف عدد الترانزستورات وأسباب اقتراب التكنولوجيا من حدودها الفيزيائية'
                   : 'Watch how transistor count doubles and why technology is approaching physical limits'}
@@ -280,9 +279,9 @@ export default function MooresLaw() {
           </div>
 
           {/* Direct Embedded Video Player */}
-          <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-lg border border-red-200 bg-black">
+          <div className="max-w-xs sm:max-w-sm mx-auto aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-lg border border-red-200 bg-black">
             <iframe
-              src="https://www.youtube.com/embed/6-tKOHICqrI?rel=0&modestbranding=1"
+              src="https://www.youtube.com/embed/yWkxf_Ss-ZM?rel=0&modestbranding=1"
               title="Moore's Law Explained"
               className="w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -292,7 +291,7 @@ export default function MooresLaw() {
         </motion.div>
 
         {/* Stop and Think */}
-        <div className="max-w-3xl mx-auto mt-8">
+        <div className="max-w-3xl mx-auto mt-6 sm:mt-8">
           <StopAndThink
             questionEn="Of these five changes, which would be hardest to give up — and why?"
             questionAr="من بين هذه التغييرات الخمسة، أيها سيكون الأصعب للتخلي عنه — ولماذا؟"

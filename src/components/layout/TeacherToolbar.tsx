@@ -42,7 +42,7 @@ export default function TeacherToolbar() {
   };
 
   return (
-    <div className={`fixed bottom-6 z-50 flex flex-col gap-3 teacher-toolbar no-print ${isAr ? 'left-6 items-start' : 'right-6 items-end'}`}>
+    <div className={`fixed bottom-16 md:bottom-6 z-50 flex flex-col gap-2.5 teacher-toolbar no-print ${isAr ? 'left-3 md:left-6 items-start' : 'right-3 md:right-6 items-end'}`}>
       {/* Jump menu */}
       <AnimatePresence>
         {showJumpMenu && (
@@ -50,7 +50,7 @@ export default function TeacherToolbar() {
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            className="bg-white rounded-2xl shadow-xl border border-slate-200 p-2 mb-2"
+            className="bg-white rounded-2xl shadow-xl border border-slate-200 p-2 mb-2 max-h-[60vh] max-w-[85vw] overflow-y-auto"
           >
             {sections.map((s) => (
               <button

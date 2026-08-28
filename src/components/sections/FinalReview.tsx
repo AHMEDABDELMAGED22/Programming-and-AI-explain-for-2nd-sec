@@ -11,19 +11,19 @@ export default function FinalReview() {
   const { t, dir, isAr } = useTranslation();
 
   return (
-    <section id="section-review" className="py-20 px-6 bg-gradient-to-b from-slate-50 to-white" dir={dir}>
+    <section id="section-review" className="py-12 md:py-20 px-3 sm:px-6 bg-gradient-to-b from-slate-50 to-white" dir={dir}>
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-100 text-accent-700 text-sm font-semibold mb-4">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-100 text-accent-700 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
             {t('reviewBadge', '⭐ انتهى الدرس')}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-2" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {t('reviewTitle', 'مراجعة وتأمل')}
           </h2>
         </motion.div>
@@ -33,15 +33,15 @@ export default function FinalReview() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="key-fact-card rounded-2xl p-8 mb-10"
+          className="key-fact-card rounded-2xl p-4 sm:p-8 mb-6 sm:mb-10"
         >
-          <div className={`flex items-start gap-4 ${isAr ? 'flex-row-reverse' : ''}`}>
-            <span className="text-4xl">⭐</span>
+          <div className={`flex items-start gap-3 sm:gap-4 ${isAr ? 'flex-row-reverse' : ''}`}>
+            <span className="text-3xl sm:text-4xl flex-shrink-0">⭐</span>
             <div className={isAr ? 'text-right' : ''}>
-              <h3 className="font-bold text-primary-800 text-xl mb-3">
+              <h3 className="font-bold text-primary-800 text-lg sm:text-xl mb-2 sm:mb-3">
                 {t('keyTakeaway', 'النقطة الأساسية — تذكّر')}
               </h3>
-              <p className="text-slate-800 text-xl leading-relaxed">
+              <p className="text-slate-800 text-base sm:text-xl leading-relaxed">
                 {isAr
                   ? 'تطورت تكنولوجيا المعلومات على مراحل — الحواسيب، الإنترنت، الهواتف الذكية، والحوسبة السحابية. في كل مرحلة قدّمت تقنية أو خدمة جديدة وغيّرت أيضًا كيفية تواصل المجتمع وعمله وتعلّمه ودفع أمواله.'
                   : 'Information technology developed in stages — computers, the Internet, smartphones, and cloud computing. At each stage it introduced a new technology or service and also changed how society communicates, works, learns, and pays.'}
@@ -55,7 +55,7 @@ export default function FinalReview() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="card-interactive p-8 mb-10"
+          className="card-interactive p-4 sm:p-8 mb-6 sm:mb-10"
         >
           <div className={`flex items-start gap-3 mb-4 ${isAr ? 'flex-row-reverse' : ''}`}>
             <span className="text-3xl">❓</span>
