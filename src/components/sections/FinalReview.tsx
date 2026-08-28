@@ -172,22 +172,38 @@ export default function FinalReview() {
           />
         </motion.div>
 
-        {/* Full Lesson YouTube CTA Card (Task 3) */}
+        {/* Full Lesson YouTube CTA Card (Guaranteed Contrast) */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="card-interactive p-6 sm:p-8 bg-gradient-to-r from-red-600 via-rose-600 to-amber-600 text-white rounded-3xl shadow-xl mb-10 overflow-hidden relative"
+          className="p-6 sm:p-8 rounded-3xl shadow-2xl mb-10 overflow-hidden relative border border-red-500/40 text-white"
+          style={{
+            background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%)',
+            color: '#ffffff',
+          }}
         >
+          {/* Ambient Glow */}
+          <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none" />
+
           <div className={`flex flex-col sm:flex-row items-center justify-between gap-6 relative z-10 ${isAr ? 'sm:flex-row-reverse text-right' : 'text-left'}`}>
             <div className="space-y-2">
-              <span className="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-xs font-bold backdrop-blur-xs">
+              <span
+                className="inline-block px-3 py-1 rounded-full bg-white/20 text-white text-xs font-black backdrop-blur-xs border border-white/25"
+                style={{ color: '#ffffff' }}
+              >
                 {isAr ? '🎬 المراجعة الشاملة بالفيديو' : '🎬 Full Video Review'}
               </span>
-              <h3 className="text-xl sm:text-2xl font-black text-white" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+              <h3
+                className="text-xl sm:text-2xl font-black text-white leading-snug"
+                style={{ color: '#ffffff', fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}
+              >
                 {isAr ? 'تابع شرح الدرس الأول كاملاً وحل نماذج الامتحانات على اليوتيوب' : 'Watch the Full Lesson 1 Explanation & Exam Practice on YouTube'}
               </h3>
-              <p className="text-white/90 text-sm sm:text-base max-w-xl">
+              <p
+                className="text-white text-sm sm:text-base max-w-xl font-medium leading-relaxed opacity-95"
+                style={{ color: '#ffffff' }}
+              >
                 {isAr
                   ? 'اشترك في القناة ليصلك شرح باقي دروس مادة البرمجة والذكاء الاصطناعي للصف الثاني الثانوي أولاً بأول.'
                   : 'Subscribe to the channel for upcoming Programming & AI lessons and exam solutions.'}
@@ -197,7 +213,8 @@ export default function FinalReview() {
             <div className="flex w-full sm:w-auto flex-shrink-0">
               <button
                 onClick={() => openVideo('6CYMPGJOwNk', 'youtube')}
-                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white hover:bg-slate-100 active:scale-95 text-red-600 font-black text-base shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white hover:bg-slate-100 active:scale-95 text-red-700 font-black text-base shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+                style={{ backgroundColor: '#ffffff', color: '#b91c1c' }}
               >
                 <span>▶️</span>
                 <span>{isAr ? 'مشاهدة الفيديو الشامل' : 'Watch Full Video'}</span>

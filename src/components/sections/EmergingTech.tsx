@@ -220,8 +220,9 @@ export default function EmergingTech() {
                           <VideoFacade
                             videoId={tech.youtubeVideoId}
                             title={isAr ? `فيديو تعليمي: شرح ${tech.nameAr}` : `Educational Video: ${tech.nameEn}`}
-                            channel="Tech Explanation"
-                            duration="6 min"
+                            channel={tech.id === 'vr' ? 'YouTube Shorts' : 'Tech Explanation'}
+                            duration={tech.id === 'vr' ? '1 min' : '6 min'}
+                            isShorts={tech.id === 'vr'}
                           />
                         </div>
 
