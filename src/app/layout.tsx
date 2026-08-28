@@ -42,10 +42,11 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="ar"
+      dir="rtl"
       className={`${inter.variable} ${spaceGrotesk.variable} ${notoArabic.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+      <body className="min-h-full flex flex-col antialiased bg-white text-slate-900">{children}</body>
     </html>
   );
 }

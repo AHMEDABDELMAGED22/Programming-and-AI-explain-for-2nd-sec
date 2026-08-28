@@ -5,6 +5,7 @@ import { useLessonStore } from '@/store/lessonStore';
 import { useTranslation } from '@/lib/i18n';
 import Navigation from '@/components/layout/Navigation';
 import TeacherToolbar from '@/components/layout/TeacherToolbar';
+import CommunityBar from '@/components/layout/CommunityBar';
 import VideoModal from '@/components/interactive/VideoModal';
 import ImageLightbox from '@/components/interactive/ImageLightbox';
 import LessonIntro from '@/components/sections/LessonIntro';
@@ -19,16 +20,40 @@ import ExamPreparation from '@/components/sections/ExamPreparation';
 import FinalReview from '@/components/sections/FinalReview';
 
 export default function LessonPage() {
-  const { isClassroomMode, setActiveSection } = useLessonStore();
+  const { isClassroomMode, setActiveSection, hydrateFromStorage } = useLessonStore();
   const { isAr, dir } = useTranslation();
 
-  // Keyboard navigation
+  // Hydrate session progress from localStorage on mount (Task 6)
+  useEffect(() => {
+    hydrateFromStorage();
+  }, [hydrateFromStorage]);
+
+  // Sync document lang and dir
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = isAr ? 'ar' : 'en';
+      document.documentElement.dir = dir;
+    }
+  }, [isAr, dir]);
+
+  // Keyboard navigation & Teacher Mode shortcut (t key)
   useEffect(() => {
     const sections = ['intro', 'timeline', 'moores-law', 'social', 'emerging', 'comparisons', 'practice', 'exam', 'stop-and-think', 'review'];
+
+    // Check URL params for ?teacher=true
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('teacher') === 'true' || params.get('mode') === 'teacher') {
+        useLessonStore.getState().toggleTeacherMode();
+      }
+    }
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
 
+      if (e.key === 't' || e.key === 'T' || e.key === 'ف') {
+        useLessonStore.getState().toggleTeacherMode();
+      }
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
         e.preventDefault();
         const currentIdx = sections.indexOf(useLessonStore.getState().activeSection);
@@ -122,6 +147,9 @@ export default function LessonPage() {
 
       {/* Teacher Toolbar */}
       <TeacherToolbar />
+
+      {/* Public Student Community CTA Bar (Task 3) */}
+      <CommunityBar />
     </div>
   );
 }

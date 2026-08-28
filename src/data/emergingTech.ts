@@ -14,7 +14,7 @@ export const emergingTechnologies: EmergingTechnology[] = [
     youtubeVideoId: 'aaOB-ErYq6Y',
     teacherQuestion: 'In autonomous driving, why is it necessary to process data instantly on the vehicle side using edge computing, rather than sending the data to the cloud for judgment?',
     image: {
-      src: '/assets/lesson1/modern-tech/autonomous-car.jpg',
+      src: '/assets/lesson1/modern-tech/autonomous-car.webp',
       alt: 'Autonomous self-driving vehicle with sensors',
       caption: 'A self-driving car decides on board (edge computing), without waiting for the cloud.',
       source: 'Wikimedia Commons'

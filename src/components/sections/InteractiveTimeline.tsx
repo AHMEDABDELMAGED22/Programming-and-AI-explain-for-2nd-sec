@@ -12,8 +12,11 @@ export default function InteractiveTimeline() {
   const { t, dir, isAr } = useTranslation();
 
   return (
-    <section id="section-timeline" className="py-12 md:py-20 px-3 sm:px-6" dir={dir}>
-      <div className="max-w-6xl mx-auto">
+    <section id="section-timeline" className="py-14 md:py-24 px-3 sm:px-6 bg-mesh-amber border-y border-amber-200/60 relative overflow-hidden" dir={dir}>
+      {/* Decorative ambient blur */}
+      <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-amber-300/10 blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -21,13 +24,13 @@ export default function InteractiveTimeline() {
           viewport={{ once: true, margin: '-100px' }}
           className="text-center mb-10 md:mb-16"
         >
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-100 text-primary-700 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-600 text-white text-xs sm:text-sm font-black tracking-wide mb-3 sm:mb-4 shadow-md shadow-amber-500/20">
             {t('timelineBadge', '⏳ تاريخ تكنولوجيا المعلومات')}
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 sm:mb-3 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-2 sm:mb-3 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {t('timelineTitle', 'التسلسل الزمني التفاعلي')}
           </h2>
-          <p className="text-slate-500 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-medium">
             {t('timelineSubtitle', 'اضغط على أي حقبة لاستكشاف تقنياتها وتأثيرها وأمثلتها الواقعية')}
           </p>
         </motion.div>
@@ -41,9 +44,9 @@ export default function InteractiveTimeline() {
         {/* Timeline */}
         <div className="relative" key={animationResetKey}>
           {/* Connector line */}
-          <div className="absolute top-[52px] left-0 right-0 h-[3px] bg-slate-200 rounded-full hidden md:block" />
+          <div className="absolute top-[52px] left-0 right-0 h-[3px] bg-amber-200/80 rounded-full hidden md:block" />
           <motion.div
-            className={`absolute top-[52px] h-[3px] bg-gradient-to-r from-primary-400 via-primary-500 to-primary-400 rounded-full hidden md:block ${isAr ? 'right-0' : 'left-0'}`}
+            className={`absolute top-[52px] h-[3px] bg-gradient-to-r from-amber-500 via-orange-500 to-amber-500 rounded-full hidden md:block ${isAr ? 'right-0' : 'left-0'}`}
             initial={{ width: '0%' }}
             whileInView={{ width: '100%' }}
             viewport={{ once: true }}

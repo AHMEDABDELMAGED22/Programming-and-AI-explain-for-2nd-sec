@@ -22,8 +22,11 @@ export default function ExamPreparation() {
   const modelAnswerText = isAr && examStyleQuestion.answerAr ? examStyleQuestion.answerAr : examStyleQuestion.answer;
 
   return (
-    <section id="section-exam" className="py-12 md:py-20 px-3 sm:px-6" dir={dir}>
-      <div className="max-w-4xl mx-auto">
+    <section id="section-exam" className="py-14 md:py-24 px-3 sm:px-6 bg-mesh-rose border-b border-rose-200/60 relative overflow-hidden" dir={dir}>
+      {/* Decorative ambient blur */}
+      <div className="absolute top-10 right-0 w-80 h-80 rounded-full bg-rose-400/10 blur-3xl pointer-events-none" />
+
+      <div className="max-w-4xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -31,13 +34,13 @@ export default function ExamPreparation() {
           viewport={{ once: true }}
           className="text-center mb-8 md:mb-10"
         >
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-warm-100 text-warm-600 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-rose-600 to-red-600 text-white text-xs sm:text-sm font-black tracking-wide mb-3 sm:mb-4 shadow-md shadow-rose-500/20">
             {t('examBadge', '📝 التحضير للامتحان')}
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {t('examTitle', 'سؤال بأسلوب الامتحان')}
           </h2>
-          <p className="text-slate-500 text-sm sm:text-base md:text-lg">
+          <p className="text-rose-700 font-semibold text-sm sm:text-base">
             {t('examSubtitle', 'تدرّب على الإجابة كما في الامتحان الحقيقي')}
           </p>
         </motion.div>
@@ -53,20 +56,20 @@ export default function ExamPreparation() {
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="card-interactive p-4 sm:p-6 md:p-10"
+          className="card-interactive p-4 sm:p-6 md:p-10 border-rose-200/80 shadow-lg"
         >
           {/* Question */}
-          <div className="exam-tip-card rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6">
+          <div className="exam-tip-card rounded-2xl p-4 sm:p-6 mb-4 sm:mb-6 border-s-4 border-rose-500 bg-gradient-to-r from-rose-50 via-white to-orange-50">
             <div className={`flex items-start gap-3 ${isAr ? 'flex-row-reverse' : ''}`}>
               <span className="text-3xl">📝</span>
               <div className={isAr ? 'text-right' : ''}>
                 <div className={`flex items-center gap-3 mb-2 ${isAr ? 'flex-row-reverse' : ''}`}>
-                  <h4 className="font-bold text-warm-800 text-lg">{t('examTitle', 'سؤال بأسلوب الامتحان')}</h4>
-                  <span className="px-3 py-1 rounded-full bg-warm-200 text-warm-800 text-sm font-bold">
+                  <h4 className="font-bold text-rose-900 text-lg">{t('examTitle', 'سؤال بأسلوب الامتحان')}</h4>
+                  <span className="px-3.5 py-1 rounded-full bg-rose-600 text-white text-xs sm:text-sm font-black shadow-xs">
                     [{examStyleQuestion.marks} {isAr ? 'درجات' : 'marks'}]
                   </span>
                 </div>
-                <p className="text-slate-800 text-xl leading-relaxed">
+                <p className="text-slate-900 text-lg sm:text-xl font-bold leading-relaxed">
                   {questionText}
                 </p>
                 <p className="text-slate-600 mt-2 text-sm italic">

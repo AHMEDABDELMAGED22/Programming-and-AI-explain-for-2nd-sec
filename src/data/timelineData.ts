@@ -15,7 +15,7 @@ export const timelineEras: TimelineEra[] = [
     impact: 'Mainly used for military and scientific computation',
     icon: '🔬',
     image: {
-      src: '/assets/lesson1/eniac/eniac.jpg',
+      src: '/assets/lesson1/eniac/eniac.webp',
       alt: 'ENIAC — one of the first electronic general-purpose computers',
       caption: 'The first computers filled a whole room.',
       source: 'U.S. Army Photo — Public Domain'
@@ -42,7 +42,7 @@ export const timelineEras: TimelineEra[] = [
     impact: 'Beginning of personal computer use',
     icon: '💻',
     image: {
-      src: '/assets/lesson1/personal-computers/ibm-pc.jpg',
+      src: '/assets/lesson1/personal-computers/ibm-pc.webp',
       alt: 'IBM Personal Computer (1981)',
       caption: 'Personal computers brought computing to homes and offices.',
       source: 'Wikimedia Commons'
@@ -69,7 +69,7 @@ export const timelineEras: TimelineEra[] = [
     impact: 'Globalization of information; spread of email',
     icon: '🌐',
     image: {
-      src: '/assets/lesson1/web/early-web.jpg',
+      src: '/assets/lesson1/web/early-web.webp',
       alt: 'Early World Wide Web browser',
       caption: 'The Web connected the world\'s information.',
       source: 'Wikimedia Commons'
@@ -96,7 +96,7 @@ export const timelineEras: TimelineEra[] = [
     impact: 'Explosive spread of mobile Internet',
     icon: '📱',
     image: {
-      src: '/assets/lesson1/smartphones/iphone.jpg',
+      src: '/assets/lesson1/smartphones/iphone.webp',
       alt: 'First-generation iPhone (2007)',
       caption: 'Smartphones put the Internet in every pocket.',
       source: 'Wikimedia Commons'
@@ -123,7 +123,7 @@ export const timelineEras: TimelineEra[] = [
     impact: 'Large-scale data analysis and AI; "IT as a service" becomes widespread',
     icon: '☁️',
     image: {
-      src: '/assets/lesson1/cloud/data-center.jpg',
+      src: '/assets/lesson1/cloud/data-center.webp',
       alt: 'Modern data center for cloud computing',
       caption: 'This is "the cloud" — real machines in a real place.',
       source: 'Wikimedia Commons'

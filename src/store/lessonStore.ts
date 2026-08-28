@@ -3,11 +3,13 @@
 // ============================================================
 import { create } from 'zustand';
 import type { Locale } from '@/lib/i18n';
+import { getLessonProgress, saveLessonProgress } from '@/lib/storage';
 
 interface LessonState {
   // Language
   locale: Locale;
   toggleLocale: () => void;
+  setLocale: (locale: Locale) => void;
 
   // Navigation
   activeSection: string;
@@ -22,6 +24,10 @@ interface LessonState {
   toggleTeacherMode: () => void;
   showTeacherNotes: boolean;
   setShowTeacherNotes: (show: boolean) => void;
+
+  // Custom Teacher Videos Modal
+  isTeacherVideoModalOpen: boolean;
+  setTeacherVideoModalOpen: (open: boolean) => void;
 
   // Timeline
   selectedEra: string | null;
@@ -48,16 +54,40 @@ interface LessonState {
   // Animation reset
   animationResetKey: number;
   resetAnimations: () => void;
+
+  // Session Hydration
+  hydrateFromStorage: () => Promise<void>;
 }
 
 export const useLessonStore = create<LessonState>((set, get) => ({
-  // Language
-  locale: 'en',
-  toggleLocale: () => set((s) => ({ locale: s.locale === 'en' ? 'ar' : 'en' })),
+  // Language - Default to Arabic as requested in Task 1
+  locale: 'ar',
+  toggleLocale: () => set((s) => {
+    const nextLocale: Locale = s.locale === 'en' ? 'ar' : 'en';
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('lesson1_locale', nextLocale);
+    }
+    return { locale: nextLocale };
+  }),
+  setLocale: (locale) => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('lesson1_locale', locale);
+    }
+    set({ locale });
+  },
 
   // Navigation
   activeSection: 'intro',
-  setActiveSection: (section) => set({ activeSection: section }),
+  setActiveSection: (section) => {
+    set({ activeSection: section });
+    const { revealStates } = get();
+    saveLessonProgress({
+      currentSection: section,
+      completedSections: [],
+      revealStates,
+      lastUpdated: new Date().toISOString(),
+    }).catch(() => {});
+  },
 
   // Classroom Mode
   isClassroomMode: false,
@@ -71,11 +101,25 @@ export const useLessonStore = create<LessonState>((set, get) => ({
     return { isClassroomMode: next };
   }),
 
-  // Teacher Mode
-  isTeacherMode: true,
-  toggleTeacherMode: () => set((s) => ({ isTeacherMode: !s.isTeacherMode })),
+  // Teacher Mode - Strictly false by default for public visitors (Fix 1)
+  isTeacherMode: false,
+  toggleTeacherMode: () => set((s) => {
+    const next = !s.isTeacherMode;
+    if (typeof window !== 'undefined') {
+      if (next) {
+        sessionStorage.setItem('egy_teacher_active', 'true');
+      } else {
+        sessionStorage.removeItem('egy_teacher_active');
+      }
+    }
+    return { isTeacherMode: next };
+  }),
   showTeacherNotes: false,
   setShowTeacherNotes: (show) => set({ showTeacherNotes: show }),
+
+  // Custom Teacher Videos Modal
+  isTeacherVideoModalOpen: false,
+  setTeacherVideoModalOpen: (open) => set({ isTeacherVideoModalOpen: open }),
 
   // Timeline
   selectedEra: null,
@@ -83,19 +127,41 @@ export const useLessonStore = create<LessonState>((set, get) => ({
 
   // Progressive Reveal
   revealStates: {},
-  advanceReveal: (sectionId) => set((s) => ({
-    revealStates: {
+  advanceReveal: (sectionId) => set((s) => {
+    const nextStates = {
       ...s.revealStates,
-      [sectionId]: (s.revealStates[sectionId] ?? 0) + 1
-    }
-  })),
-  resetReveal: (sectionId) => set((s) => ({
-    revealStates: {
+      [sectionId]: (s.revealStates[sectionId] ?? 0) + 1,
+    };
+    saveLessonProgress({
+      currentSection: s.activeSection,
+      completedSections: [],
+      revealStates: nextStates,
+      lastUpdated: new Date().toISOString(),
+    }).catch(() => {});
+    return { revealStates: nextStates };
+  }),
+  resetReveal: (sectionId) => set((s) => {
+    const nextStates = {
       ...s.revealStates,
-      [sectionId]: 0
-    }
-  })),
-  resetAllReveals: () => set({ revealStates: {} }),
+      [sectionId]: 0,
+    };
+    saveLessonProgress({
+      currentSection: s.activeSection,
+      completedSections: [],
+      revealStates: nextStates,
+      lastUpdated: new Date().toISOString(),
+    }).catch(() => {});
+    return { revealStates: nextStates };
+  }),
+  resetAllReveals: () => {
+    set({ revealStates: {} });
+    saveLessonProgress({
+      currentSection: get().activeSection,
+      completedSections: [],
+      revealStates: {},
+      lastUpdated: new Date().toISOString(),
+    }).catch(() => {});
+  },
   getRevealStep: (sectionId) => get().revealStates[sectionId] ?? 0,
 
   // Video Modal
@@ -112,4 +178,26 @@ export const useLessonStore = create<LessonState>((set, get) => ({
   // Animation reset
   animationResetKey: 0,
   resetAnimations: () => set((s) => ({ animationResetKey: s.animationResetKey + 1 })),
+
+  // Session Hydration from localStorage
+  hydrateFromStorage: async () => {
+    if (typeof window === 'undefined') return;
+    try {
+      const savedLocale = localStorage.getItem('lesson1_locale') as Locale | null;
+      if (savedLocale === 'ar' || savedLocale === 'en') {
+        set({ locale: savedLocale });
+      }
+      if (sessionStorage.getItem('egy_teacher_active') === 'true') {
+        set({ isTeacherMode: true });
+      } else {
+        set({ isTeacherMode: false, isClassroomMode: false });
+      }
+      const progress = await getLessonProgress();
+      if (progress) {
+        if (progress.revealStates) {
+          set({ revealStates: progress.revealStates });
+        }
+      }
+    } catch {}
+  },
 }));

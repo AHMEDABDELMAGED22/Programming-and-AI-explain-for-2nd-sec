@@ -9,6 +9,7 @@ import RevealButton from '@/components/interactive/RevealButton';
 import TeacherNote from '@/components/interactive/TeacherNote';
 import StopAndThink from '@/components/interactive/StopAndThink';
 import AvatarCallout from '@/components/interactive/AvatarCallout';
+import VideoFacade from '@/components/interactive/VideoFacade';
 
 export default function MooresLaw() {
   const ref = useRef(null);
@@ -51,8 +52,11 @@ export default function MooresLaw() {
   const xAxisLabels = [1970, 1980, 1990, 2000, 2010, 2020];
 
   return (
-    <section id="section-moores-law" className="py-12 md:py-20 px-3 sm:px-6" ref={ref} dir={dir}>
-      <div className="max-w-5xl mx-auto" key={animationResetKey}>
+    <section id="section-moores-law" className="py-14 md:py-24 px-3 sm:px-6 bg-mesh-cyan border-b border-cyan-200/60 relative overflow-hidden" ref={ref} dir={dir}>
+      {/* Ambient background glow */}
+      <div className="absolute -bottom-20 -left-20 w-96 h-96 rounded-full bg-cyan-400/10 blur-3xl pointer-events-none" />
+
+      <div className="max-w-5xl mx-auto relative z-10" key={animationResetKey}>
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -60,14 +64,14 @@ export default function MooresLaw() {
           viewport={{ once: true }}
           className="text-center mb-8 md:mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-warm-100 text-warm-600 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-cyan-600 to-sky-600 text-white text-xs sm:text-sm font-black tracking-wide mb-3 sm:mb-4 shadow-md shadow-cyan-500/20">
             {t('mooresBadge', '📈 فهم النمو')}
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {isAr ? 'قانون مور' : "Moore\u2019s Law"}
           </h2>
-          <p className={`text-slate-400 text-base sm:text-lg ${isAr ? 'font-sans' : 'arabic-text'}`}>
-            {isAr ? "Moore's Law" : 'قانون مور'}
+          <p className="text-cyan-700 font-semibold text-sm sm:text-base">
+            {isAr ? "Moore's Law — مضاعفة عدد الترانزستورات كل عامين" : 'Moore\'s Law — Transistor count doubles every 2 years'}
           </p>
         </motion.div>
 
@@ -278,14 +282,14 @@ export default function MooresLaw() {
             </div>
           </div>
 
-          {/* Direct Embedded Video Player */}
-          <div className="max-w-xs sm:max-w-sm mx-auto aspect-[9/16] w-full rounded-2xl overflow-hidden shadow-lg border border-red-200 bg-black">
-            <iframe
-              src="https://www.youtube.com/embed/yWkxf_Ss-ZM?rel=0&modestbranding=1"
-              title="Moore's Law Explained"
-              className="w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
+          {/* Click-to-load YouTube Video Facade */}
+          <div className="max-w-xs sm:max-w-sm mx-auto">
+            <VideoFacade
+              videoId="yWkxf_Ss-ZM"
+              title={isAr ? 'فيديو تعليمي: شرح قانون مور' : "Moore's Law Explained"}
+              channel="CrashCourse"
+              duration="12 min"
+              isShorts={true}
             />
           </div>
         </motion.div>

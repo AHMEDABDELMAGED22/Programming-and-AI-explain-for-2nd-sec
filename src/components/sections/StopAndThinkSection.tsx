@@ -35,8 +35,11 @@ export default function StopAndThinkSection() {
   };
 
   return (
-    <section id="section-stop-and-think" className="py-12 md:py-20 px-3 sm:px-6 bg-gradient-to-b from-sky-50/50 via-white to-slate-50" dir={dir}>
-      <div className="max-w-6xl mx-auto">
+    <section id="section-stop-and-think" className="py-14 md:py-24 px-3 sm:px-6 bg-gradient-to-b from-sky-50/80 via-cyan-50/50 to-blue-50/50 border-b border-sky-200/60 relative overflow-hidden" dir={dir}>
+      {/* Decorative ambient blur */}
+      <div className="absolute top-10 left-10 w-80 h-80 rounded-full bg-cyan-400/10 blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -44,13 +47,13 @@ export default function StopAndThinkSection() {
           viewport={{ once: true }}
           className="text-center mb-8 md:mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sky-100 text-sky-800 text-xs sm:text-sm font-bold mb-3 sm:mb-4 shadow-sm">
-            💭❓ {isAr ? 'أسئلة التفكير الناقد للدرس' : 'Critical Thinking Questions'}
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-sky-600 to-cyan-600 text-white text-xs sm:text-sm font-black tracking-wide mb-3 sm:mb-4 shadow-md shadow-sky-500/20">
+            💭 {isAr ? 'أسئلة التفكير الناقد للدرس' : 'Critical Thinking Questions'}
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 sm:mb-3 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-2 sm:mb-3 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {isAr ? 'توقف وفكّر — بنك الأسئلة والمفاهيم' : 'Stop & Think — Question Bank'}
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed">
+          <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-3xl mx-auto leading-relaxed font-medium">
             {isAr
               ? 'أسئلة تفكير تطبيقي ونقاشي شاملة لكل موضوع في الدرس الأول لاختبار الفهم العميق وتطبيق المفاهيم في مواقف واقعية.'
               : 'Applied critical thinking and classroom discussion questions covering every topic in Lesson 1 to test deep conceptual understanding.'}

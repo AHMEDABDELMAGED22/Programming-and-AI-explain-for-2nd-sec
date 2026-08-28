@@ -23,8 +23,11 @@ export default function WorkedExample() {
   const questions: BilingualExamQuestion[] = activeTab === 'worked' ? workedExampleQuestions : tryQuestions;
 
   return (
-    <section id="section-practice" className="py-12 md:py-20 px-3 sm:px-6 bg-slate-50" dir={dir}>
-      <div className="max-w-4xl mx-auto">
+    <section id="section-practice" className="py-14 md:py-24 px-3 sm:px-6 bg-mesh-amber border-b border-amber-200/60 relative overflow-hidden" dir={dir}>
+      {/* Decorative ambient blur */}
+      <div className="absolute top-0 left-0 w-80 h-80 rounded-full bg-amber-400/10 blur-3xl pointer-events-none" />
+
+      <div className="max-w-4xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -32,12 +35,15 @@ export default function WorkedExample() {
           viewport={{ once: true }}
           className="text-center mb-8 md:mb-10"
         >
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-100 text-primary-700 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-600 to-orange-600 text-white text-xs sm:text-sm font-black tracking-wide mb-3 sm:mb-4 shadow-md shadow-amber-500/20">
             {t('practiceBadge', '✏️ تدريب وتطبيق')}
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {t('practiceTitle', 'أمثلة محلولة وتدريبات')}
           </h2>
+          <p className="text-amber-800 font-semibold text-sm sm:text-base">
+            {isAr ? 'Worked Examples & Interactive Practice — تدريبات عملية بأسلوب تفاعلي' : 'Worked Examples & Interactive Practice'}
+          </p>
         </motion.div>
 
         <TeacherNote

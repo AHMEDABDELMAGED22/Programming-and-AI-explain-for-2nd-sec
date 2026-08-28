@@ -8,6 +8,7 @@ import { useTranslation } from '@/lib/i18n';
 import RevealButton from '@/components/interactive/RevealButton';
 import StopAndThink from '@/components/interactive/StopAndThink';
 import TeacherNote from '@/components/interactive/TeacherNote';
+import VideoFacade from '@/components/interactive/VideoFacade';
 
 // Arabic definitions/explanations for emerging tech
 const arContent: Record<string, { definition: string; explanation: string; examples: string; keyTerm?: string; teacherQ: string }> = {
@@ -68,8 +69,12 @@ export default function EmergingTech() {
   };
 
   return (
-    <section id="section-emerging" className="py-12 md:py-20 px-3 sm:px-6" dir={dir}>
-      <div className="max-w-6xl mx-auto">
+    <section id="section-emerging" className="py-14 md:py-24 px-3 sm:px-6 bg-mesh-violet border-b border-purple-200/60 relative overflow-hidden" dir={dir}>
+      {/* Decorative ambient blur */}
+      <div className="absolute top-1/3 -left-20 w-80 h-80 rounded-full bg-violet-400/10 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-10 right-0 w-80 h-80 rounded-full bg-purple-400/10 blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -77,13 +82,16 @@ export default function EmergingTech() {
           viewport={{ once: true }}
           className="text-center mb-8 md:mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-100 text-violet-700 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-violet-600 to-purple-600 text-white text-xs sm:text-sm font-black tracking-wide mb-3 sm:mb-4 shadow-md shadow-violet-500/20">
             {t('emergingBadge', '🚀 تقنيات ناشئة بارزة')}
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {t('emergingTitle', 'مستكشف التقنيات الحديثة')}
           </h2>
-          <p className="text-slate-500 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-violet-700 font-semibold text-sm sm:text-base mb-1">
+            {isAr ? 'Modern Emerging Technologies — الحوسبة الطرفية، القيادة الذاتية، AR/VR، والكم' : 'Modern Emerging Technologies'}
+          </p>
+          <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
             {t('emergingSubtitle', 'استكشف التقنيات الناشئة التي تشكّل مستقبلنا')}
           </p>
         </motion.div>
@@ -209,15 +217,12 @@ export default function EmergingTech() {
                             </div>
                           </div>
 
-                          <div className="aspect-video w-full rounded-xl overflow-hidden shadow-md bg-black border border-red-100">
-                            <iframe
-                              src={`https://www.youtube.com/embed/${tech.youtubeVideoId}?rel=0&modestbranding=1`}
-                              title={tech.nameEn}
-                              className="w-full h-full"
-                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                              allowFullScreen
-                            />
-                          </div>
+                          <VideoFacade
+                            videoId={tech.youtubeVideoId}
+                            title={isAr ? `فيديو تعليمي: شرح ${tech.nameAr}` : `Educational Video: ${tech.nameEn}`}
+                            channel="Tech Explanation"
+                            duration="6 min"
+                          />
                         </div>
 
                         {/* Think question */}

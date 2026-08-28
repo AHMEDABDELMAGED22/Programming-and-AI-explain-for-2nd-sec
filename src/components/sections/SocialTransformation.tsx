@@ -37,8 +37,11 @@ export default function SocialTransformation() {
   };
 
   return (
-    <section id="section-social" className="py-12 md:py-20 px-3 sm:px-6 bg-slate-50" dir={dir}>
-      <div className="max-w-6xl mx-auto">
+    <section id="section-social" className="py-14 md:py-24 px-3 sm:px-6 bg-mesh-emerald border-b border-emerald-200/60 relative overflow-hidden" dir={dir}>
+      {/* Decorative ambient blur */}
+      <div className="absolute -top-16 -right-16 w-80 h-80 rounded-full bg-emerald-400/10 blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -46,16 +49,16 @@ export default function SocialTransformation() {
           viewport={{ once: true }}
           className="text-center mb-8 md:mb-12"
         >
-          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent-100 text-accent-700 text-xs sm:text-sm font-semibold mb-3 sm:mb-4">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white text-xs sm:text-sm font-black tracking-wide mb-3 sm:mb-4 shadow-md shadow-emerald-500/20">
             {t('socialBadge', '🌍 المجتمع تغيّر')}
           </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-900 mb-2 leading-tight" style={{ fontFamily: isAr ? 'var(--font-noto-arabic), sans-serif' : 'var(--font-heading)' }}>
             {t('socialTitle', 'التغيرات الاجتماعية الناتجة عن تكنولوجيا المعلومات')}
           </h2>
-          <p className={`text-slate-400 text-base sm:text-lg mb-2 ${isAr ? 'font-sans' : 'arabic-text'}`}>
-            {isAr ? 'Social Changes Driven by IT' : 'التغيرات الاجتماعية الناتجة عن تكنولوجيا المعلومات'}
+          <p className="text-emerald-700 font-semibold text-sm sm:text-base mb-2">
+            {isAr ? 'Social Changes Driven by IT — خمسة تغيرات اجتماعية جوهرية' : 'Social Changes Driven by IT'}
           </p>
-          <p className="text-slate-500 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
+          <p className="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
             {t('socialSubtitle', 'لم تقتصر تكنولوجيا المعلومات على صنع أجهزة جديدة — بل غيّرت طريقة تواصل الناس وعملهم وتعلّمهم ودفعهم.')}
           </p>
         </motion.div>

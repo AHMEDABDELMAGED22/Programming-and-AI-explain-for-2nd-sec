@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLessonStore } from '@/store/lessonStore';
 import { useTranslation } from '@/lib/i18n';
 import { useState } from 'react';
+import TeacherVideoManagerModal from './TeacherVideoManagerModal';
 
 export default function TeacherToolbar() {
   const {
@@ -16,6 +17,7 @@ export default function TeacherToolbar() {
     showTeacherNotes,
     setShowTeacherNotes,
     setActiveSection,
+    setTeacherVideoModalOpen,
   } = useLessonStore();
   const { t, isAr } = useTranslation();
 
@@ -40,6 +42,11 @@ export default function TeacherToolbar() {
     document.getElementById(`section-${id}`)?.scrollIntoView({ behavior: 'smooth' });
     setShowJumpMenu(false);
   };
+
+  // FIX 1 — Hide toolbar completely from public view; only show in Teacher or Classroom Mode
+  if (!isTeacherMode && !isClassroomMode) {
+    return null;
+  }
 
   return (
     <div className={`fixed bottom-16 md:bottom-6 z-50 flex flex-col gap-2.5 teacher-toolbar no-print ${isAr ? 'left-3 md:left-6 items-start' : 'right-3 md:right-6 items-end'}`}>
@@ -110,6 +117,17 @@ export default function TeacherToolbar() {
               isAr={isAr}
             />
 
+            {/* Teacher Custom Videos Manager (Task 5) */}
+            <ToolbarButton
+              icon="🎬"
+              label={isAr ? 'إدارة الفيديوهات الإضافية' : 'Manage Custom Videos'}
+              onClick={() => {
+                setTeacherVideoModalOpen(true);
+                setIsExpanded(false);
+              }}
+              isAr={isAr}
+            />
+
             {/* Teacher Mode Toggle */}
             <ToolbarButton
               icon={isTeacherMode ? '👨‍🏫' : '👤'}
@@ -133,6 +151,9 @@ export default function TeacherToolbar() {
       >
         ⚙
       </motion.button>
+
+      {/* Teacher Custom Video Modal Dialog */}
+      <TeacherVideoManagerModal />
     </div>
   );
 }
